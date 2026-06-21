@@ -8,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     public float interactRange = 5f;
     public Camera playerCamera;
     public float transitionDuration = 1f;
+    public Movement player;
 
     private Interactable currentHovered;
     private Interactable currentActive;
@@ -16,11 +17,6 @@ public class PlayerInteraction : MonoBehaviour
 
     public RawImage fadeImage;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (isTransitioning) return;
@@ -28,7 +24,9 @@ public class PlayerInteraction : MonoBehaviour
         if (isInteracting)
         {
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                StartCoroutine(TransitionCamera(currentActive.interactableCamera, playerCamera, false));
+                if (currentActive.trigger == null){
+                    StartCoroutine(TransitionCamera(currentActive.interactableCamera, playerCamera, false));
+                }
             return;
         }
 
@@ -51,8 +49,29 @@ public class PlayerInteraction : MonoBehaviour
             currentActive = currentHovered;
             currentActive.SetHighlight(false);
             currentHovered = null;
-            StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
+
+            if (currentActive.trigger != null)
+            {
+                isInteracting = true;
+                player.SetInputEnabled(false);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                currentActive.trigger.StartDialogue();
+            }
+            else
+            {
+                StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
+            }
         }
+    }
+
+    public void EndInteraction()
+    {
+        isInteracting = false;
+        currentActive = null;
+        player.SetInputEnabled(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     IEnumerator TransitionCamera(Camera from, Camera to, bool enteringInteraction)
@@ -73,6 +92,7 @@ public class PlayerInteraction : MonoBehaviour
         if (enteringInteraction)
         {
             isInteracting = true;
+            player.SetInputEnabled(false);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -80,6 +100,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             isInteracting = false;
             currentActive = null;
+            player.SetInputEnabled(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
