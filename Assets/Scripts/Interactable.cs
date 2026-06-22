@@ -8,6 +8,8 @@ public class Interactable : MonoBehaviour
     private Color[] originalColors;
     public DialogueTrigger trigger;
 
+    public string minigame_to_start;
+
     void Start()
     {
         trigger = GetComponent<DialogueTrigger>();
