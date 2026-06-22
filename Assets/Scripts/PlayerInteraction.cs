@@ -58,6 +58,10 @@ public class PlayerInteraction : MonoBehaviour
                 Cursor.visible = true;
                 currentActive.trigger.StartDialogue();
             }
+            else if (currentActive.minigame_to_start != null) {
+                StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
+                GameManager.Instance.start_minigame(currentActive.minigame_to_start);
+            }
             else
             {
                 StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));

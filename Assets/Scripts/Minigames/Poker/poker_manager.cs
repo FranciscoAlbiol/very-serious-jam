@@ -45,9 +45,16 @@ public class poker_manager : MonoBehaviour
     private int current_bet = 0; //keeps track of money spent this game
     private int raise_bet = 0;
 
+    public static poker_manager Instance { get; private set; }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+
+    public void start_poker()
     {
         suffle_deck();
         create_round();

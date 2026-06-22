@@ -30,10 +30,19 @@ public class quatro_manager : MonoBehaviour
     private bool is_match_over = false;
     private bool waiting_player = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void start_game()
+    public static quatro_manager Instance { get; private set; }
+
+    private void Awake()
     {
-        suffle_deck();
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public void start_quatro()
+    {
+        Debug.Log("Playing a quatro match");
+        /*suffle_deck();
         prepare_deck_queue();
 
         //give cards to players:
@@ -61,7 +70,7 @@ public class quatro_manager : MonoBehaviour
 
         play_card(current_card);
 
-        StartCoroutine(quatro_flow_maganer());  
+        StartCoroutine(quatro_flow_maganer()); */
         
     }
 
