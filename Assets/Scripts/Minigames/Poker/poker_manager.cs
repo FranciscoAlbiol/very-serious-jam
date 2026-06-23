@@ -38,6 +38,7 @@ public class poker_manager : MonoBehaviour
     //ui
     public GameObject action_buttons;
     public GameObject raise_bet_HUD;
+    public GameObject poker_scene;
 
     //turn checks
     private bool waiting_player = false;
@@ -56,6 +57,9 @@ public class poker_manager : MonoBehaviour
 
     public void start_poker()
     {
+        Debug.Log("starting poker");
+        poker_scene.SetActive(true);
+
         suffle_deck();
         create_round();
 
