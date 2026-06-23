@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         switch(minigame) 
         {
         case "poker":
+            Debug.Log("trying to start poker");
             poker_manager.Instance.start_poker();
             break;
         case "quatro":
