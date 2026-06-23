@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText;
     public Button nextButton;
 
+    public Button[] choiceButtons;
+
     public float letterDelay = 0.05f;
 
     private AudioSource audioSource;
@@ -37,6 +39,9 @@ public class DialogueManager : MonoBehaviour
 
         dialogueBox.SetActive(false);
         nextButton.onClick.AddListener(OnNextPressed);
+
+        foreach (Button btn in choiceButtons)
+            btn.gameObject.SetActive(false);
     }
 
     void Update()
@@ -65,8 +70,74 @@ public class DialogueManager : MonoBehaviour
     {
         yield return null;
         buttonReady = true;
-        nextButton.gameObject.SetActive(true);
+        Debug.Log($"[Dialogue] buttonReady=true, currentIndex={currentIndex}");
+
+        DialogueLine line = currentLines[currentIndex];
+        if (line.isChoice && line.choices != null && line.choices.Length > 0)
+        {
+            Debug.Log($"[Dialogue] Showing {line.choices.Length} choice buttons");
+            ShowChoiceButtons(line);
+        }
+        else
+            nextButton.gameObject.SetActive(true);
     }
+
+
+    void ShowChoiceButtons(DialogueLine line)
+    {
+        nextButton.gameObject.SetActive(false);
+
+        for (int i = 0; i < choiceButtons.Length; i++)
+        {
+            if (i < line.choices.Length)
+            {
+                DialogueChoice capturedChoice = line.choices[i];
+
+                choiceButtons[i].gameObject.SetActive(true);
+
+                TextMeshProUGUI label = choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>(true);
+                if (label != null) label.text = capturedChoice.label ?? "";
+
+                choiceButtons[i].onClick.RemoveAllListeners();
+                choiceButtons[i].onClick.AddListener(() => OnChoicePressed(capturedChoice));
+            }
+            else
+            {
+                choiceButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void HideChoiceButtons()
+    {
+        foreach (Button btn in choiceButtons)
+            btn.gameObject.SetActive(false);
+    }
+
+    void OnChoicePressed(DialogueChoice choice)
+    {
+        Debug.Log($"[Dialogue] OnChoicePressed called. dialogueActive={dialogueActive} buttonReady={buttonReady} choice={choice?.label}");
+        if (!dialogueActive || !buttonReady)
+        {
+            Debug.LogWarning($"[Dialogue] Choice blocked. dialogueActive={dialogueActive} buttonReady={buttonReady}");
+            return;
+        }
+
+        HideChoiceButtons();
+        buttonReady = false;
+
+        choice.onChosen?.Invoke();
+
+        if (choice.nextLineIndex < 0 || choice.nextLineIndex >= currentLines.Length)
+        {
+            EndDialogue();
+            return;
+        }
+
+        currentIndex = choice.nextLineIndex;
+        ShowLine(currentIndex);
+    }
+
 
     public void StartDialogue(DialogueLine[] allLines, int dialogueIndex, DialogueTrigger trigger = null)
     {
@@ -90,6 +161,7 @@ public class DialogueManager : MonoBehaviour
         dialogueActive = true;
         dialogueBox.SetActive(true);
         nextButton.gameObject.SetActive(false);
+        HideChoiceButtons();
         buttonReady = false;
         ShowLine(0);
     }
@@ -105,9 +177,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         if (line.characterRenderer != null)
-        {
             line.characterRenderer.sprite = line.characterSprite;
-        }
 
         if (line.voiceLine != null)
         {
@@ -123,6 +193,7 @@ public class DialogueManager : MonoBehaviour
         buttonReady = false;
         dialogueText.text = "";
         nextButton.gameObject.SetActive(false);
+        HideChoiceButtons();
 
         line.onLineShown?.Invoke();
     }
@@ -158,11 +229,24 @@ public class DialogueManager : MonoBehaviour
     {
         if (activeTrigger != null)
             activeTrigger.MarkIndexSeen(activeDialogueIndex);
+
+        bool shouldContinue = activeTrigger != null
+            && currentLines != null
+            && currentLines.Length > 0
+            && currentLines[currentLines.Length - 1].continueToNextIndex;
+
         dialogueActive = false;
         isTyping = false;
         audioSource.Stop();
         dialogueBox.SetActive(false);
+        HideChoiceButtons();
         currentLines = null;
+
+        if (shouldContinue)
+        {
+            activeTrigger.AdvanceAndRestart();
+            return;
+        }
 
         PlayerInteraction interaction = FindFirstObjectByType<PlayerInteraction>();
         if (interaction != null)

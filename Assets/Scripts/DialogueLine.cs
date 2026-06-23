@@ -12,4 +12,9 @@ public class DialogueLine
     public string text;
     public AudioClip voiceLine;
     public UnityEvent onLineShown;
+
+    public bool isChoice;
+    public DialogueChoice[] choices;
+
+    public bool continueToNextIndex;
 }

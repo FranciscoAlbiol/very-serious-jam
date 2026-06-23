@@ -13,6 +13,32 @@ public class DialogueTrigger : MonoBehaviour
         DialogueManager.instance.StartDialogue(lines, currentIndex, this);
     }
 
+    public void AdvanceAndRestart()
+    {
+        currentIndex++;
+
+        bool hasNext = false;
+        foreach (DialogueLine line in lines)
+        {
+            if (line.dialogueIndex == currentIndex)
+            {
+                hasNext = true;
+                break;
+            }
+        }
+
+        if (hasNext)
+        {
+            DialogueManager.instance.StartDialogue(lines, currentIndex, this);
+        }
+        else
+        {
+            PlayerInteraction interaction = FindFirstObjectByType<PlayerInteraction>();
+            if (interaction != null)
+                interaction.EndInteraction();
+        }
+    }
+
     public void SetIndex(int index)
     {
         currentIndex = index;
