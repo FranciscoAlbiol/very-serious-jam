@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,7 +11,6 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueBox;
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI nameText;
-    public Image characterSprite;
     public Button nextButton;
 
     public float letterDelay = 0.05f;
@@ -66,9 +66,23 @@ public class DialogueManager : MonoBehaviour
         nextButton.gameObject.SetActive(true);
     }
 
-    public void StartDialogue(DialogueLine[] lines)
+    // Filters all lines down to only those matching dialogueIndex, then plays them in order
+    public void StartDialogue(DialogueLine[] allLines, int dialogueIndex)
     {
-        currentLines = lines;
+        List<DialogueLine> filtered = new List<DialogueLine>();
+        foreach (DialogueLine line in allLines)
+        {
+            if (line.dialogueIndex == dialogueIndex)
+                filtered.Add(line);
+        }
+
+        if (filtered.Count == 0)
+        {
+            Debug.LogWarning($"DialogueManager: No lines found for index {dialogueIndex}");
+            return;
+        }
+
+        currentLines = filtered.ToArray();
         currentIndex = 0;
         dialogueActive = true;
         dialogueBox.SetActive(true);
@@ -87,10 +101,9 @@ public class DialogueManager : MonoBehaviour
             nameText.gameObject.SetActive(!string.IsNullOrEmpty(line.characterName));
         }
 
-        if (characterSprite != null)
+        if (line.characterRenderer != null)
         {
-            characterSprite.sprite = line.characterSprite;
-            characterSprite.gameObject.SetActive(line.characterSprite != null);
+            line.characterRenderer.sprite = line.characterSprite;
         }
 
         if (line.voiceLine != null)
@@ -107,9 +120,11 @@ public class DialogueManager : MonoBehaviour
         buttonReady = false;
         dialogueText.text = "";
         nextButton.gameObject.SetActive(false);
+
+        line.onLineShown?.Invoke();
     }
 
-    void OnNextPressed()
+    public void OnNextPressed()
     {
         if (!dialogueActive || currentLines == null || !buttonReady) return;
 
