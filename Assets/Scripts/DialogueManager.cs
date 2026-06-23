@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     private DialogueLine[] currentLines;
     private int currentIndex = 0;
     private bool dialogueActive = false;
+    private DialogueTrigger activeTrigger;
+    private int activeDialogueIndex;
 
     private string targetText = "";
     private int visibleCount = 0;
@@ -66,8 +68,7 @@ public class DialogueManager : MonoBehaviour
         nextButton.gameObject.SetActive(true);
     }
 
-    // Filters all lines down to only those matching dialogueIndex, then plays them in order
-    public void StartDialogue(DialogueLine[] allLines, int dialogueIndex)
+    public void StartDialogue(DialogueLine[] allLines, int dialogueIndex, DialogueTrigger trigger = null)
     {
         List<DialogueLine> filtered = new List<DialogueLine>();
         foreach (DialogueLine line in allLines)
@@ -82,6 +83,8 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        activeTrigger = trigger;
+        activeDialogueIndex = dialogueIndex;
         currentLines = filtered.ToArray();
         currentIndex = 0;
         dialogueActive = true;
@@ -151,8 +154,10 @@ public class DialogueManager : MonoBehaviour
         ShowLine(currentIndex);
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
+        if (activeTrigger != null)
+            activeTrigger.MarkIndexSeen(activeDialogueIndex);
         dialogueActive = false;
         isTyping = false;
         audioSource.Stop();
