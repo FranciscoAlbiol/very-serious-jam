@@ -19,6 +19,8 @@ public class HandEvaluation {
 
 public class poker_manager : MonoBehaviour
 {
+
+    public PlayerInteraction p_interaction;
     
     public card_SO[] deck;
 
@@ -60,7 +62,16 @@ public class poker_manager : MonoBehaviour
         Debug.Log("starting poker");
         poker_scene.SetActive(true);
 
+        waiting_player = false;
+        turn_index = 0;
+        current_bet = 0; //keeps track of money spent this game
+        raise_bet = 0;
+
         suffle_deck();
+        for(int i = 0; i < table_cards.Length; i++) {
+            t_cards[i].SetActive(false);
+        }
+
         create_round();
 
         change_bet(5);
@@ -372,7 +383,10 @@ public class poker_manager : MonoBehaviour
 
     //actions
     public void player_fold() {
-        //exits the minigame straigh up
+        StopAllCoroutines();
+        action_buttons.SetActive(false);
+        poker_scene.SetActive(false);
+        p_interaction.EndInteraction();
     }
 
     public void player_check() {
