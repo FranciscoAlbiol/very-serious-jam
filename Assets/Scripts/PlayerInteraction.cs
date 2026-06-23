@@ -25,9 +25,10 @@ public class PlayerInteraction : MonoBehaviour
         if (isInteracting)
         {
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                if (currentActive.trigger == null){
-                    EndInteraction();
-                }
+            {
+                if (currentActive.trigger == null || currentActive.trigger.HasSeenIndex(currentActive.trigger.GetIndex()))
+                    DialogueManager.instance.EndDialogue();
+            }
             return;
         }
 
@@ -50,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
             interactNotif.SetActive(false);
         }
 
-        if (currentHovered != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (currentHovered != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
             if (currentHovered.interactableCamera == null) return;
             currentActive = currentHovered;
