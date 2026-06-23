@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     private bool isTransitioning = false;
 
     public RawImage fadeImage;
+    public GameObject interactNotif;
 
     void Update()
     {
@@ -25,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
                 if (currentActive.trigger == null){
-                    StartCoroutine(TransitionCamera(currentActive.interactableCamera, playerCamera, false));
+                    EndInteraction();
                 }
             return;
         }
@@ -39,8 +40,14 @@ public class PlayerInteraction : MonoBehaviour
         if (hovered != currentHovered)
         {
             if (currentHovered != null) currentHovered.SetHighlight(false);
+            interactNotif.SetActive(false);
             currentHovered = hovered;
             if (currentHovered != null) currentHovered.SetHighlight(true);
+            interactNotif.SetActive(true);
+        }
+
+        if(!didHit){
+            interactNotif.SetActive(false);
         }
 
         if (currentHovered != null && Mouse.current.leftButton.wasPressedThisFrame)
@@ -52,11 +59,11 @@ public class PlayerInteraction : MonoBehaviour
 
             if (currentActive.trigger != null)
             {
+                StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
                 isInteracting = true;
                 player.SetInputEnabled(false);
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
-                currentActive.trigger.StartDialogue();
             }
             else if (currentActive.minigame_to_start != null) {
                 StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
@@ -72,6 +79,7 @@ public class PlayerInteraction : MonoBehaviour
     public void EndInteraction()
     {
         isInteracting = false;
+        StartCoroutine(TransitionCamera(currentActive.interactableCamera, playerCamera, false));
         currentActive = null;
         player.SetInputEnabled(true);
         Cursor.lockState = CursorLockMode.Locked;
@@ -81,6 +89,7 @@ public class PlayerInteraction : MonoBehaviour
     IEnumerator TransitionCamera(Camera from, Camera to, bool enteringInteraction)
     {
         isTransitioning = true;
+        interactNotif.SetActive(false);
         float half = transitionDuration / 2f;
 
         for (float t = 0; t < half; t += Time.deltaTime)
@@ -99,6 +108,9 @@ public class PlayerInteraction : MonoBehaviour
             player.SetInputEnabled(false);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            if (currentActive.trigger != null){
+                currentActive.trigger.StartDialogue();
+            }
         }
         else
         {
