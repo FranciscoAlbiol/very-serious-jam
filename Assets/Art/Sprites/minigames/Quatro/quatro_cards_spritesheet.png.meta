@@ -1,0 +1,1616 @@
+fileFormatVersion: 2
+guid: 1ed7243321de1bb4c9f38483256b357b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6480c97f3965ac74a957376abea94279
+      internalID: 915581548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f480d23fcc3cc740a984cd20f652b43
+      internalID: 682252595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a00c56aa4dc164c498d4d2011beb6227
+      internalID: -716458790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a03279f506c5e5e47b4ae77f0673dc95
+      internalID: -246511991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551a1411eff2f4f46a21c789142e3c2f
+      internalID: -582598080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5989bc8baeae4b74992bf9678669753a
+      internalID: 1154474758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df718772b049b7b48979c5b939947d06
+      internalID: -2020682599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faf120b5c4512094293f6f47dbd9d81c
+      internalID: 90968704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 667c56d92ae668d43ab3655256cb55b0
+      internalID: -645126314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b4c6bab3280924c857495c02e32167
+      internalID: 1230375761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47682ac593c4864c99569c132dea55e
+      internalID: 1547210294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 434adae81402b8249a54813fce8bafef
+      internalID: 1307788292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 2376
+        y: 1192
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f4bd26b65676fb49bbe10700a2abf90
+      internalID: 250300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b13ddedce9a74a48b786c9ab29303b1
+      internalID: -110428606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fc1ec7d40d7ef14187a07cb5f594c2b
+      internalID: 2139708052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a10d661e8762b5489192b58ac0bfe30
+      internalID: 860825148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1ec7244a5bae1499629af53dfcac41
+      internalID: -1641289136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 328fc0693a734dd448c880d2de387bcf
+      internalID: -1419699907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3258582e21222a4ba6e9dd04f712c66
+      internalID: -2126866007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69530ec27f5bb76419b188debb234d20
+      internalID: 96360655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de8f9e1613e5ddf43b0281655b42d130
+      internalID: 629711578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa65637baaba3534f830039c97674199
+      internalID: -1592028789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47abe1ea0960ba14391459c9e0e9ec3e
+      internalID: 586361221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 292b2e9c49e593d4e8bf7ea1168bb959
+      internalID: 535253289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a562d6f5a28237c4da9296ad1d520aca
+      internalID: 547706656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 2376
+        y: 894
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea7f77f57516074c96122e4debc59f5
+      internalID: -1631067464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2c048983d964484f93ddff217aba932
+      internalID: 154420535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53875a57d4ddfaf4ca4b7d765ca25289
+      internalID: 1814766757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060be343bfe825b4d9d4c61d2ac61a23
+      internalID: 254834936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b8ba301fcb947044a93f01d2979a958
+      internalID: -384880292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af61d8e7f1630e142978ad55e8099246
+      internalID: -2143104239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b184454775f2f046bdd4a53c146663c
+      internalID: -167016555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b639ee9470cb2a540adb3a6358407265
+      internalID: -1532094515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c4ffb2ae8f447419ba8edda288def5
+      internalID: -586538761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7d383dd936ef0d4cbfe34a60d6e35f7
+      internalID: -1342893514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f2ceb0acfce7094fafce7899de1c0f7
+      internalID: 361378792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9fe32a833269943aa074e66249a9fe
+      internalID: 1844775337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e0487c38597ab04388f862c696c7a79
+      internalID: -2130680826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 2376
+        y: 596
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8fdc20b72bb79440b1805c7068ad8d2
+      internalID: -1309320012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc7263f7efece944ba375195f781cfd5
+      internalID: -803982721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19f2b4b1f99627240b89f90d2404fd68
+      internalID: 1754200736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02637fe91badd794c9109611cdbfc88d
+      internalID: 1127159441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cd076a8b92e6f4cbc2af6fe30d34f0
+      internalID: 1716250428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d9f4eb3eecae9746809a8656a717f61
+      internalID: -1332001477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8677c569ed10d341a9f8887786ea2ab
+      internalID: -1992888416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6deec9acbc82404b96b5184e3d806c9
+      internalID: 6452699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab80192cb61d80b46916d331f3215d14
+      internalID: -636661624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_47
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9730c87c91f4e4b488e6747f383167d0
+      internalID: -580275273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_48
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03af4f67b2b5d514e8403b756c9e2c52
+      internalID: 740627739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_49
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56c8548c6802ff5408f143f0c1042d2d
+      internalID: -1269320669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_50
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f9035269bf89c4438cc40c0e7b76656
+      internalID: -374107153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_51
+      rect:
+        serializedVersion: 2
+        x: 2376
+        y: 298
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e86e5788d22494cbe05671c5104e76
+      internalID: -2136522153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501b81d33d7404c458ff86eb5e5c7d61
+      internalID: 1114456262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_53
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc3cc6898fff7341b7717116f75a477
+      internalID: 1118657783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_54
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15e1e299ed5d22458b1858056fd95bd
+      internalID: 125662475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_55
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7d41f45f981a9c459e688e12e983729
+      internalID: -592418755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb26e3398bfc2b14183bb78789bf31b4
+      internalID: 380502090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_57
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fc56228622b3d04dbc9ad9ea7b91165
+      internalID: -589658624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_58
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3716ec22303a564eaf586e51846b64f
+      internalID: -491769821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_59
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51bb4b941d781574498ce3ee7eba5532
+      internalID: -1945578461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_60
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7078e01a230d006439a1d81aacfd9239
+      internalID: 431025348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_61
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 767d7de1a35ab134eba64d4f4b965d0a
+      internalID: -1933669597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_62
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57dc685dba9831446b0f2825628e78fa
+      internalID: 457297778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_63
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce333ff7a33a07468280ad242b657ae
+      internalID: -484840231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: quatro_cards_spritesheet_64
+      rect:
+        serializedVersion: 2
+        x: 2376
+        y: 0
+        width: 198
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf854204b0e8b0409fa6e3bf9f19bd4
+      internalID: 95648977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2ca4b0c8bb6918e4a8194a58436da646
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: False
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":13.0,"y":5.0},"gridSpriteSize":{"x":198.0,"y":298.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      quatro_cards_spritesheet_0: 915581548
+      quatro_cards_spritesheet_1: 682252595
+      quatro_cards_spritesheet_10: 1547210294
+      quatro_cards_spritesheet_11: 1307788292
+      quatro_cards_spritesheet_12: 250300036
+      quatro_cards_spritesheet_13: -110428606
+      quatro_cards_spritesheet_14: 2139708052
+      quatro_cards_spritesheet_15: 860825148
+      quatro_cards_spritesheet_16: -1641289136
+      quatro_cards_spritesheet_17: -1419699907
+      quatro_cards_spritesheet_18: -2126866007
+      quatro_cards_spritesheet_19: 96360655
+      quatro_cards_spritesheet_2: -716458790
+      quatro_cards_spritesheet_20: 629711578
+      quatro_cards_spritesheet_21: -1592028789
+      quatro_cards_spritesheet_22: 586361221
+      quatro_cards_spritesheet_23: 535253289
+      quatro_cards_spritesheet_24: 547706656
+      quatro_cards_spritesheet_25: -1631067464
+      quatro_cards_spritesheet_26: 154420535
+      quatro_cards_spritesheet_27: 1814766757
+      quatro_cards_spritesheet_28: 254834936
+      quatro_cards_spritesheet_29: -384880292
+      quatro_cards_spritesheet_3: -246511991
+      quatro_cards_spritesheet_30: -2143104239
+      quatro_cards_spritesheet_31: -167016555
+      quatro_cards_spritesheet_32: -1532094515
+      quatro_cards_spritesheet_33: -586538761
+      quatro_cards_spritesheet_34: -1342893514
+      quatro_cards_spritesheet_35: 361378792
+      quatro_cards_spritesheet_36: 1844775337
+      quatro_cards_spritesheet_37: -2130680826
+      quatro_cards_spritesheet_38: -1309320012
+      quatro_cards_spritesheet_39: -803982721
+      quatro_cards_spritesheet_4: -582598080
+      quatro_cards_spritesheet_40: 1754200736
+      quatro_cards_spritesheet_41: 1127159441
+      quatro_cards_spritesheet_42: 1716250428
+      quatro_cards_spritesheet_43: -1332001477
+      quatro_cards_spritesheet_44: -1992888416
+      quatro_cards_spritesheet_45: 6452699
+      quatro_cards_spritesheet_46: -636661624
+      quatro_cards_spritesheet_47: -580275273
+      quatro_cards_spritesheet_48: 740627739
+      quatro_cards_spritesheet_49: -1269320669
+      quatro_cards_spritesheet_5: 1154474758
+      quatro_cards_spritesheet_50: -374107153
+      quatro_cards_spritesheet_51: -2136522153
+      quatro_cards_spritesheet_52: 1114456262
+      quatro_cards_spritesheet_53: 1118657783
+      quatro_cards_spritesheet_54: 125662475
+      quatro_cards_spritesheet_55: -592418755
+      quatro_cards_spritesheet_56: 380502090
+      quatro_cards_spritesheet_57: -589658624
+      quatro_cards_spritesheet_58: -491769821
+      quatro_cards_spritesheet_59: -1945578461
+      quatro_cards_spritesheet_6: -2020682599
+      quatro_cards_spritesheet_60: 431025348
+      quatro_cards_spritesheet_61: -1933669597
+      quatro_cards_spritesheet_62: 457297778
+      quatro_cards_spritesheet_63: -484840231
+      quatro_cards_spritesheet_64: 95648977
+      quatro_cards_spritesheet_7: 90968704
+      quatro_cards_spritesheet_8: -645126314
+      quatro_cards_spritesheet_9: 1230375761
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
