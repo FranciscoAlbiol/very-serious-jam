@@ -54,6 +54,9 @@ public class poker_manager : MonoBehaviour
     private int npc1_bet = 0;
     private int npc2_bet = 0;
 
+    private int current_min_bet = 5;
+    private int player_bet = 0;
+
     public static poker_manager Instance { get; private set; }
 
     private void Awake()
@@ -77,10 +80,11 @@ public class poker_manager : MonoBehaviour
         NPC1_folded = false;
         NPC2_folded = false;
 
-        global_bet = 15;
-        current_bet = 5;
+        current_min_bet = 5;
+        player_bet = 5;
         npc1_bet = 5;
         npc2_bet = 5;
+        global_bet = 15;
         GameManager.Instance.current_money -= 5;
 
         suffle_deck();
@@ -201,6 +205,10 @@ public class poker_manager : MonoBehaviour
     }
 
     IEnumerator player_turn() {
+        if ((NPC1_folded && turn_index == 0) || (NPC2_folded && turn_index == 2)) {
+            yield break;
+        }
+
         waiting_player = true;
         action_buttons.SetActive(true);
         yield return new WaitUntil(() => !waiting_player);
@@ -234,8 +242,24 @@ public class poker_manager : MonoBehaviour
     IEnumerator npc_turn2(int npcIndex, int cards_in_table) {
         
         card_SO[] currentNPC;
-        if(npcIndex == 0) currentNPC = NPC1_hand;
-        else currentNPC = NPC2_hand;
+        int npcCurrentBet;
+
+        if (npcIndex == 0) {
+            currentNPC = NPC1_hand;
+            npcCurrentBet = npc1_bet;
+        } else {
+            currentNPC = NPC2_hand;
+            npcCurrentBet = npc2_bet;
+        }
+
+        float pressureFoldChance = (current_min_bet / 20) * 5f;
+        if (UnityEngine.Random.Range(0f, 100f) <= pressureFoldChance) {
+            Debug.Log($"NPC {npcIndex} folds due to high bet pressure!");
+            if (npcIndex == 0) NPC1_folded = true;
+            else NPC2_folded = true;
+            yield return new WaitForSeconds(1f);
+            yield break;
+        }
 
         HandEvaluation hand = EvaluateHand(currentNPC, table_cards, cards_in_table);
 
@@ -243,8 +267,11 @@ public class poker_manager : MonoBehaviour
         if (hand.hasFourOfAKind 
             || hand.hasFullHouse || bluff <= 10f) {
            Debug.Log("I raise my bet!");
-           if(npcIndex == 0) { npc1_bet += 10; global_bet += 10; }
-           else { npc2_bet += 10; global_bet += 10; }
+           int npcRaiseAmount = (current_min_bet - npcCurrentBet) + 10;
+           current_min_bet += 10;
+
+           if(npcIndex == 0) { npc1_bet += npcRaiseAmount; global_bet += npcRaiseAmount; }
+           else { npc2_bet += npcRaiseAmount; global_bet += npcRaiseAmount; }
         }
 
         else if (!hand.hasPair && !hand.hasTwoPair) {
@@ -255,8 +282,9 @@ public class poker_manager : MonoBehaviour
 
         else {
             Debug.Log("I keep playing");
-            if(npcIndex == 0) { npc1_bet += 5; global_bet += 5; }
-            else { npc2_bet += 5; global_bet += 5; }
+            int npcCallAmount = current_min_bet - npcCurrentBet;
+            if(npcIndex == 0) { npc1_bet += npcCallAmount; global_bet += npcCallAmount; }
+            else { npc2_bet += npcCallAmount; global_bet += npcCallAmount; }
         }
             
 
@@ -417,31 +445,44 @@ public class poker_manager : MonoBehaviour
     }
 
     public void player_check() {
+        int callAmount = current_min_bet - player_bet;
+        if (callAmount > 0) {
+            if (GameManager.Instance.current_money >= callAmount) {
+                player_bet += callAmount;
+                global_bet += callAmount;
+                GameManager.Instance.current_money -= callAmount;
+            } else {
+                player_fold();
+                return;
+            }
+        }
         waiting_player = false;
     }
 
     public void player_raise() {
         action_buttons.SetActive(false);
         raise_bet_HUD.SetActive(true);
-        raise_bet = 0;
+        raise_bet = current_min_bet - player_bet + 5;
 
         TMP_Text bet_text = raise_bet_HUD.GetComponentInChildren<TMP_Text>();        
-        bet_text.text = "0";
+        bet_text.text = raise_bet.ToString();
     }
 
     public void player_finish_raise() {
-        current_bet += raise_bet;
+        current_min_bet = player_bet + raise_bet;
         global_bet += raise_bet;
         GameManager.Instance.current_money -= raise_bet; 
+        player_bet += raise_bet;
         raise_bet_HUD.SetActive(false);
         waiting_player = false;
     }
 
     public void change_bet(int amount) {
+        int minimumRequiredRaise = current_min_bet - player_bet + 5;
         int target_bet = raise_bet + amount;
 
-        if (target_bet < 5) {
-            target_bet = 5;
+        if (target_bet < minimumRequiredRaise) {
+            target_bet = minimumRequiredRaise;
         }
 
         if (target_bet > GameManager.Instance.current_money) {
