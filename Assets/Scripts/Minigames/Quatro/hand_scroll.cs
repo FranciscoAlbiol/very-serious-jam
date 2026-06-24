@@ -36,17 +36,12 @@ public class HandScroll : MonoBehaviour
 
             if (moveDirection != 0f)
             {
-                // Calculate how much we want to move this frame
                 float movement = moveDirection * scrollSpeed * Time.deltaTime;
 
-                // Check if this movement would exceed our clamps
                 float targetOffset = Mathf.Clamp(currentOffset + movement, -maxScrollOffset, maxScrollOffset);
                 float actualMovement = targetOffset - currentOffset;
 
-                // Move cleanly along the object's own horizontal right vector in world space to avoid skewing
                 transform.position += transform.right * actualMovement;
-
-                // Update tracked offset
                 currentOffset = targetOffset;
             }
         }
