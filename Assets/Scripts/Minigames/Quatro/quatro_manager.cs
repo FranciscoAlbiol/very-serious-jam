@@ -124,6 +124,7 @@ public class quatro_manager : MonoBehaviour
     IEnumerator quatro_flow_maganer()
     {
         yield return new WaitForSeconds(1.0f); 
+        poker_scene.SetActive(true);
 
         while (!is_match_over)
         {   
@@ -244,6 +245,7 @@ public class quatro_manager : MonoBehaviour
     public void end_player_turn()
     {
         Debug.Log("finishing turn !!");
+        Debug.Log(turn_index);
         if (turn_index == 1 && waiting_player)
         {
             waiting_player = false;
