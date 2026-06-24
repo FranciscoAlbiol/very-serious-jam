@@ -4792,6 +4792,7 @@ MonoBehaviour:
   moneytext: {fileID: 263077832}
   quatro: {fileID: 946974254}
   poker: {fileID: 627115297}
+  dice: {fileID: 0}
   slotMachine: {fileID: 1689604324}
 --- !u!4 &810745154
 Transform:
