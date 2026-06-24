@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7704484381985917400}
   - component: {fileID: 711595986070803818}
-  - component: {fileID: 4691192131223546257}
   - component: {fileID: 7133950451154045036}
   m_Layer: 0
   m_Name: NPCcam
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4691192131223546257
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294434983047205065}
-  m_Enabled: 1
 --- !u!114 &7133950451154045036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,50 +181,72 @@ MonoBehaviour:
     characterName: Cubestack 1
     characterRenderer: {fileID: 1973625132079535063}
     characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: hiiiiiii <3 :3
+    text: buh
     voiceLine: {fileID: 0}
     onLineShown:
       m_PersistentCalls:
         m_Calls: []
-  - dialogueIndex: 0
-    characterName: Cubestack 2
-    characterRenderer: {fileID: 1973625132079535063}
-    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: Kill yourself.
-    voiceLine: {fileID: 0}
-    onLineShown:
-      m_PersistentCalls:
-        m_Calls: []
-  - dialogueIndex: 0
-    characterName: Cubestack 3
-    characterRenderer: {fileID: 1973625132079535063}
-    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: quack.
-    voiceLine: {fileID: 0}
-    onLineShown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8903271201154221246}
-          m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-          m_MethodName: SetIndex
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+    isChoice: 0
+    choices: []
+    continueToNextIndex: 1
   - dialogueIndex: 1
-    characterName: Cubestack 2
+    characterName: Cubestack 1
     characterRenderer: {fileID: 1973625132079535063}
     characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: haven't you been here already? fuck off.
+    text: buh?
     voiceLine: {fileID: 0}
     onLineShown:
       m_PersistentCalls:
         m_Calls: []
+    isChoice: 0
+    choices: []
+    continueToNextIndex: 0
+  - dialogueIndex: 1
+    characterName: Cubestack 1
+    characterRenderer: {fileID: 1973625132079535063}
+    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+    text: 
+    voiceLine: {fileID: 0}
+    onLineShown:
+      m_PersistentCalls:
+        m_Calls: []
+    isChoice: 1
+    choices:
+    - label: Play
+      onChosen:
+        m_PersistentCalls:
+          m_Calls: []
+      nextLineIndex: -1
+    - label: Leave
+      onChosen:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 8903271201154221246}
+            m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+            m_MethodName: StartDialogue
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      nextLineIndex: 1
+    continueToNextIndex: 0
+  - dialogueIndex: 2
+    characterName: Cubestack 1
+    characterRenderer: {fileID: 1973625132079535063}
+    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+    text: then fuck off
+    voiceLine: {fileID: 0}
+    onLineShown:
+      m_PersistentCalls:
+        m_Calls: []
+    isChoice: 0
+    choices: []
+    continueToNextIndex: 0
 --- !u!114 &3067146188342534323
 MonoBehaviour:
   m_ObjectHideFlags: 0
