@@ -233,6 +233,24 @@ public class quatro_manager : MonoBehaviour
 
         if (cardData.number == last_card_played.number || cardData.color == last_card_played.color) {
             {
+                int oweAmount = current_bet - player_bet;
+                if (oweAmount > 0)
+                {
+                    if (GameManager.Instance.current_money >= oweAmount)
+                    {
+                        player_bet += oweAmount;
+                        global_bet += oweAmount;
+                        GameManager.Instance.current_money -= oweAmount;
+                        Debug.Log($"Player matched the bet by paying {oweAmount} when placing a card.");
+                    }
+                    else
+                    {
+                        Debug.Log("Player can't afford the bet match, folding!");
+                        player_fold();
+                        return;
+                    }
+                }
+
                 play_card(cardData);
 
                 player_hand.Remove(cardData);
@@ -257,6 +275,19 @@ public class quatro_manager : MonoBehaviour
     {
         List<quatro_card_SO> current_hand = (turn_index == 0) ? NPC1_hand : NPC2_hand;
         
+        float foldChance = (global_bet / 100) * 5f;
+        if (UnityEngine.Random.Range(0f, 100f) <= foldChance) {
+            Debug.Log($"NPC {turn_index} folds due to global pool pressure ({foldChance}% chance)!");
+            if (turn_index == 0) {
+                NPC1_folded = true;
+                if (NPC1_cards != null) NPC1_cards.SetActive(false);
+            } else {
+                NPC2_folded = true;
+                if (NPC2_cards != null) NPC2_cards.SetActive(false);
+            }
+            return;
+        }
+
         if (current_hand.Count >= 8) {
             Debug.Log($"NPC {turn_index} folds due to having 8 or more cards!");
             if (turn_index == 0) {
@@ -267,6 +298,14 @@ public class quatro_manager : MonoBehaviour
                 if (NPC2_cards != null) NPC2_cards.SetActive(false);
             }
             return;
+        }
+
+        int currentNpcBet = (turn_index == 0) ? npc1_bet : npc2_bet;
+        int oweAmount = current_bet - currentNpcBet;
+        if (oweAmount > 0) {
+            if (turn_index == 0) npc1_bet += oweAmount; else npc2_bet += oweAmount;
+            global_bet += oweAmount;
+            Debug.Log($"NPC {turn_index} matched the outstanding target bet by paying {oweAmount}");
         }
 
         bool playedCard = false;
@@ -304,11 +343,13 @@ public class quatro_manager : MonoBehaviour
 
         if (current_hand.Count == 3) {
             Debug.Log($"NPC {turn_index} raises by 10 because they have 3 cards!");
+            current_bet += 10;
             if (turn_index == 0) { npc1_bet += 10; } else { npc2_bet += 10; }
             global_bet += 10;
         }
         else if (current_hand.Count == 1) {
             Debug.Log($"NPC {turn_index} raises by 20 because they have 1 card!");
+            current_bet += 20;
             if (turn_index == 0) { npc1_bet += 20; } else { npc2_bet += 20; }
             global_bet += 20;
         }
@@ -389,6 +430,23 @@ public class quatro_manager : MonoBehaviour
     }
 
     public void give_card_to_player() {
+        int oweAmount = current_bet - player_bet;
+        if (oweAmount > 0)
+        {
+            if (GameManager.Instance.current_money >= oweAmount)
+            {
+                player_bet += oweAmount;
+                global_bet += oweAmount;
+                GameManager.Instance.current_money -= oweAmount;
+                Debug.Log($"Player matched the bet by paying {oweAmount} when forced to draw.");
+            }
+            else
+            {
+                player_fold();
+                return;
+            }
+        }
+
         give_card(player_hand);
         player_hand_manager pHand_manager = p_hand.GetComponent<player_hand_manager>();
         pHand_manager.AddCardToHand(player_hand[player_hand.Count-1]);

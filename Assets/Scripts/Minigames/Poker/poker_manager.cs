@@ -252,7 +252,7 @@ public class poker_manager : MonoBehaviour
             npcCurrentBet = npc2_bet;
         }
 
-        float pressureFoldChance = (current_min_bet / 20) * 5f;
+        float pressureFoldChance = (current_min_bet / 100) * 5f;
         if (UnityEngine.Random.Range(0f, 100f) <= pressureFoldChance) {
             Debug.Log($"NPC {npcIndex} folds due to high bet pressure!");
             if (npcIndex == 0) NPC1_folded = true;
