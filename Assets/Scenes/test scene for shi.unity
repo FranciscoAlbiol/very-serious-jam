@@ -3933,6 +3933,8 @@ MonoBehaviour:
   action_buttons: {fileID: 0}
   raise_bet_HUD: {fileID: 0}
   poker_scene: {fileID: 0}
+  NPC1_cards: {fileID: 0}
+  NPC2_cards: {fileID: 0}
 --- !u!1 &987388395
 GameObject:
   m_ObjectHideFlags: 0
@@ -4692,7 +4694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1097201729
 RectTransform:
   m_ObjectHideFlags: 0
