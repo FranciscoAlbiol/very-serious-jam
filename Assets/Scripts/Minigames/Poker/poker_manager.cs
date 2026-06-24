@@ -28,6 +28,10 @@ public class poker_manager : MonoBehaviour
     public GameObject p_card1;
     public GameObject p_card2;
 
+    //npc cards (objects)
+    public GameObject NPC1_cards;
+    public GameObject NPC2_cards;
+
     //table cards (objects)
     public GameObject[] t_cards;
 
@@ -41,12 +45,16 @@ public class poker_manager : MonoBehaviour
     public GameObject action_buttons;
     public GameObject raise_bet_HUD;
     public GameObject poker_scene;
+    public Sprite back_card_sprite;
 
     //turn checks
     private bool waiting_player = false;
     private int turn_index = 0;
     private int current_bet = 0; //keeps track of money spent this game
     private int raise_bet = 0;
+
+    private bool NPC1_folded = false;
+    private bool NPC2_folded = false;
 
     public static poker_manager Instance { get; private set; }
 
@@ -61,15 +69,20 @@ public class poker_manager : MonoBehaviour
     {
         Debug.Log("starting poker");
         poker_scene.SetActive(true);
+        NPC1_cards.SetActive(true);
+        NPC2_cards.SetActive(true);
 
         waiting_player = false;
         turn_index = 0;
         current_bet = 0; //keeps track of money spent this game
         raise_bet = 0;
+        NPC1_folded = false;
+        NPC2_folded = false;
 
         suffle_deck();
         for(int i = 0; i < table_cards.Length; i++) {
-            t_cards[i].SetActive(false);
+            t_cards[i].GetComponent<SpriteRenderer>().sprite = back_card_sprite;    
+
         }
 
         create_round();
@@ -91,8 +104,16 @@ public class poker_manager : MonoBehaviour
 
         //1. BET
         yield return StartCoroutine(npc_turn1(0)); 
+        if (NPC1_folded) NPC1_cards.SetActive(false);
+
         yield return StartCoroutine(player_turn()); 
         yield return StartCoroutine(npc_turn1(2));
+        if (NPC2_folded) NPC2_cards.SetActive(false);
+        
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            player_fold();
+        }
 
         //2. SHOW 3 CARDS FROM TABLE
         Debug.Log("Flop");
@@ -100,9 +121,22 @@ public class poker_manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //3. BET AGAIN
-        yield return StartCoroutine(npc_turn2(0, 3)); 
+        if (!NPC1_folded) {
+            yield return StartCoroutine(npc_turn2(0, 3)); 
+            if (NPC1_folded) NPC1_cards.SetActive(false);
+        }
+
         yield return StartCoroutine(player_turn()); 
-        yield return StartCoroutine(npc_turn2(2, 3));
+
+        if (!NPC2_folded) {
+            yield return StartCoroutine(npc_turn2(2, 3));
+            if (NPC2_folded) NPC2_cards.SetActive(false);
+        }
+
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            player_fold();
+        }
 
         //4. SHOW 2 CARDS FROM TABLE
         Debug.Log("Turn");
@@ -110,9 +144,22 @@ public class poker_manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //5. BET AGAIN
-        yield return StartCoroutine(npc_turn2(0, 5)); 
+        if (!NPC1_folded) {
+            yield return StartCoroutine(npc_turn2(0, 5)); 
+            if (NPC1_folded) NPC1_cards.SetActive(false);
+        }
+
         yield return StartCoroutine(player_turn()); 
-        yield return StartCoroutine(npc_turn2(2, 5));
+
+        if (!NPC2_folded) {
+            yield return StartCoroutine(npc_turn2(2, 5));
+            if (NPC2_folded) NPC2_cards.SetActive(false);
+        }
+
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            player_fold();
+        }
 
         //6. SHOW FINAL CARD FROM TABLE
         Debug.Log("River");
@@ -120,9 +167,23 @@ public class poker_manager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         //7. FINAL BET
-        yield return StartCoroutine(npc_turn2(0, 6)); 
-        yield return StartCoroutine(player_turn()); 
-        yield return StartCoroutine(npc_turn2(2, 6));
+        if (!NPC1_folded) {
+            yield return StartCoroutine(npc_turn2(0, 6)); 
+            if (NPC2_folded) NPC2_cards.SetActive(false);
+        }
+
+        yield return StartCoroutine(player_turn());
+
+        if (!NPC1_folded) { 
+            yield return StartCoroutine(npc_turn2(2, 6));
+            if (NPC2_folded) NPC2_cards.SetActive(false);
+        }
+
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            yield return new WaitForSeconds(1f);
+            player_fold();
+        }
 
         //8. SHOW CARDS
         //not doing it here
@@ -131,11 +192,21 @@ public class poker_manager : MonoBehaviour
 
         //9. ASSIGN WINNER
         int pointsNPC1 = calculate_points(NPC1_hand); Debug.Log(pointsNPC1);
-        int pointsNPC2 = calculate_points(NPC1_hand); Debug.Log(pointsNPC2);
+        int pointsNPC2 = calculate_points(NPC2_hand); Debug.Log(pointsNPC2);
         int pointsPlayer = calculate_points(player_hand); Debug.Log(pointsPlayer);
 
         //here's where you'd give the player money. if they win or not
+        if ((NPC1_folded || pointsPlayer >= pointsNPC1) && (NPC2_folded || pointsPlayer >= pointsNPC2)) {
+            Debug.Log("player wins");
+        }
+
+        else {
+            Debug.Log("plyer loses");
+        }
+
         //player_reward();
+        yield return new WaitForSeconds(1f);
+        player_fold();
     }
 
     IEnumerator player_turn() {
@@ -160,6 +231,8 @@ public class poker_manager : MonoBehaviour
 
             //fold
             Debug.Log("I fold!");
+            if(npcIndex == 0) NPC1_folded = true;
+            else NPC2_folded = true;
         }
         
         else {
@@ -201,6 +274,8 @@ public class poker_manager : MonoBehaviour
         else if (!hand.hasPair && !hand.hasTwoPair) {
            //fold
            Debug.Log("I stop playing!");
+           if(npcIndex == 0) NPC1_folded = true;
+           else NPC2_folded = true;
         }
 
         //else: check
