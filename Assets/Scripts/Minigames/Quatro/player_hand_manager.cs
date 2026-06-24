@@ -28,6 +28,21 @@ public class player_hand_manager : MonoBehaviour
         ArrangeCards();
     }
 
+    public void EliminateAllCards() {
+        int cardCount = spawnedCards.Count;
+
+        Debug.Log("Going to delete every card in phand");
+
+        foreach (GameObject card in spawnedCards)
+        {
+            if (card != null) 
+            {
+                Destroy(card);
+            }
+        }
+        spawnedCards.Clear();
+    }
+
     public void EliminateCard(card_view card) {
         spawnedCards.Remove(card.gameObject);
         Destroy(card.gameObject);
@@ -53,11 +68,5 @@ public class player_hand_manager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddCardToHand(card_data);
-        }
-    }
+
 }

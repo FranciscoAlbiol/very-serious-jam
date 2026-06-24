@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::quatro_card_SO
   number: 7
   color: 1
-  card_sprite: {fileID: 0}
+  card_sprite: {fileID: 629711578, guid: 1ed7243321de1bb4c9f38483256b357b, type: 3}
