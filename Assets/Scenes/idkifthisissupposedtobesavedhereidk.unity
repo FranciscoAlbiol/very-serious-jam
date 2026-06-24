@@ -3457,6 +3457,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a803dec40c58e104b9ff272f8d056966, type: 2}
   p_card1: {fileID: 1075006186}
   p_card2: {fileID: 1230290210}
+  NPC1_cards: {fileID: 2018109012}
+  NPC2_cards: {fileID: 1602225840}
   t_cards:
   - {fileID: 1040975442}
   - {fileID: 1713596088}
@@ -3467,6 +3469,7 @@ MonoBehaviour:
   action_buttons: {fileID: 369387654}
   raise_bet_HUD: {fileID: 1860127103}
   poker_scene: {fileID: 312805447}
+  back_card_sprite: {fileID: -1365810111, guid: 166a5254a36fab54f9ca9c73e3e546aa, type: 3}
 --- !u!1 &674714521
 GameObject:
   m_ObjectHideFlags: 0
@@ -4790,7 +4793,7 @@ MonoBehaviour:
   moneytext: {fileID: 263077832}
   quatro: {fileID: 946974254}
   poker: {fileID: 627115297}
-  slotMachine: {fileID: 0}
+  slotMachine: {fileID: 1689604324}
 --- !u!4 &810745154
 Transform:
   m_ObjectHideFlags: 0
@@ -5455,7 +5458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &943966581
 Transform:
   m_ObjectHideFlags: 0
@@ -6056,7 +6059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1018581562
 Transform:
   m_ObjectHideFlags: 0
@@ -6147,7 +6150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1040975443
 Transform:
   m_ObjectHideFlags: 0
@@ -6680,7 +6683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1108921639
 Transform:
   m_ObjectHideFlags: 0
@@ -10113,6 +10116,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4111502091372663985, guid: d4598916bdf808c42b3d9624b1e4304a, type: 3}
+--- !u!114 &1689604324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3315950954447014295, guid: 9057506bfbc10894e86d39311b811708, type: 3}
+  m_PrefabInstance: {fileID: 284520610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d54731df90af64dadcb258b3f4e813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlotMachine
 --- !u!1 &1713596088
 GameObject:
   m_ObjectHideFlags: 0
@@ -10129,7 +10143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1713596089
 Transform:
   m_ObjectHideFlags: 0
@@ -10642,7 +10656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1784990133
 Transform:
   m_ObjectHideFlags: 0
