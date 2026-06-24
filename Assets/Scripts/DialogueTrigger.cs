@@ -1,23 +1,37 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueLine[] lines;
+    public DialogueBlock[] blocks;
 
     private int currentIndex = 0;
+    private HashSet<int> seenIndices = new HashSet<int>();
+
+    public void StartDialogue(int index)
+    {
+        currentIndex = index;
+        DialogueManager.instance.StartBlock(blocks, index, this);
+    }
 
     public void StartDialogue()
     {
-        DialogueManager.instance.StartDialogue(lines, currentIndex);
+        if (blocks == null || blocks.Length == 0) return;
+        StartDialogue(currentIndex);
     }
 
-    public void SetIndex(int index)
+    public DialogueBlock GetBlock(int index)
     {
-        currentIndex = index;
+        foreach (DialogueBlock block in blocks)
+            if (block.index == index) return block;
+        return null;
     }
 
-    public int GetIndex()
-    {
-        return currentIndex;
-    }
+    public void SetIndex(int index) => currentIndex = index;
+
+    public int GetIndex() => currentIndex;
+
+    public void MarkIndexSeen(int index) => seenIndices.Add(index);
+
+    public bool HasSeenIndex(int index) => seenIndices.Contains(index);
 }

@@ -1,12 +1,15 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public static int current_money;
+    public int current_money = 100;
+    public TextMeshProUGUI moneytext;
 
     public quatro_manager quatro;
     public poker_manager poker;
+    public SlotMachine slotMachine;
 
     void Awake()
     {
@@ -24,12 +27,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        current_money = 0;
+        
     }
 
     void Update()
     {
-        
+        moneytext.text = current_money.ToString();
     }
 
     public void start_minigame(string minigame) {
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
             break;
         case "quatro":
             quatro_manager.Instance.start_quatro();
+            break;
+        case "slots":
             break;
         default:
             Debug.Log("No minigame found.");

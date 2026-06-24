@@ -1,30 +1,34 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HandScroll : MonoBehaviour
 {
     [Header("Scroll Settings")]
     public float scrollSpeed = 5f;
-    public float maxScrollOffset = 10f; // How far left/right it can slide
+    public float maxScrollOffset = 10f; 
 
     [Header("Mouse Trigger Zones")]
     [Range(0f, 0.5f)] public float edgeThreshold = 0.15f;
 
-    public int minimum_cards; //number of cards that have be on screen before scrolling is allowed
+    public int minimum_cards; 
+
+    private float currentOffset = 0f;
 
     void Update()
     {
-        if (transform.childCount >= minimum_cards) {
-            float mouseXRatio = Input.mousePosition.x / Screen.width;
+        if (transform.childCount >= minimum_cards) 
+        {
+            if (Mouse.current == null) return;
+
+            float mouseX = Mouse.current.position.ReadValue().x;
+            float mouseXRatio = mouseX / Screen.width;
 
             float moveDirection = 0f;
 
-            // Mouse is near the right edge -> Move cards LEFT
             if (mouseXRatio > (1f - edgeThreshold))
             {
                 moveDirection = -1f;
             }
-
-            // Mouse is near the left edge -> Move cards RIGHT
             else if (mouseXRatio < edgeThreshold)
             {
                 moveDirection = 1f;
@@ -32,12 +36,14 @@ public class HandScroll : MonoBehaviour
 
             if (moveDirection != 0f)
             {
-                float newX = transform.localPosition.x + (moveDirection * scrollSpeed * Time.deltaTime);
-                newX = Mathf.Clamp(newX, -maxScrollOffset, maxScrollOffset);
+                float movement = moveDirection * scrollSpeed * Time.deltaTime;
 
-                transform.localPosition = new Vector3(newX, transform.localPosition.y, transform.localPosition.z);
+                float targetOffset = Mathf.Clamp(currentOffset + movement, -maxScrollOffset, maxScrollOffset);
+                float actualMovement = targetOffset - currentOffset;
+
+                transform.position += transform.right * actualMovement;
+                currentOffset = targetOffset;
             }
-        
         }
     }
 }

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7704484381985917400}
   - component: {fileID: 711595986070803818}
-  - component: {fileID: 4691192131223546257}
   - component: {fileID: 7133950451154045036}
   m_Layer: 0
   m_Name: NPCcam
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4691192131223546257
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294434983047205065}
-  m_Enabled: 1
 --- !u!114 &7133950451154045036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +157,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.79671, y: 0.79671, z: 0.79671}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 327019772347467099}
@@ -185,55 +176,137 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bd1c51ddf2d9847a19ca313f37c649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  lines:
-  - dialogueIndex: 0
-    characterName: Cubestack 1
-    characterRenderer: {fileID: 1973625132079535063}
-    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: hiiiiiii <3 :3
-    voiceLine: {fileID: 0}
-    onLineShown:
-      m_PersistentCalls:
-        m_Calls: []
-  - dialogueIndex: 0
-    characterName: Cubestack 2
-    characterRenderer: {fileID: 1973625132079535063}
-    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: Kill yourself.
-    voiceLine: {fileID: 0}
-    onLineShown:
-      m_PersistentCalls:
-        m_Calls: []
-  - dialogueIndex: 0
-    characterName: Cubestack 3
-    characterRenderer: {fileID: 1973625132079535063}
-    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: quack.
-    voiceLine: {fileID: 0}
-    onLineShown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8903271201154221246}
-          m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-          m_MethodName: SetIndex
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - dialogueIndex: 1
-    characterName: Cubestack 2
-    characterRenderer: {fileID: 1973625132079535063}
-    characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-    text: haven't you been here already? fuck off.
-    voiceLine: {fileID: 0}
-    onLineShown:
-      m_PersistentCalls:
-        m_Calls: []
+  blocks:
+  - index: 0
+    lines:
+    - characterName: Cubestack Top
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: hiiii uwu
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Middle
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: balls idk
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Bottom
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: quack
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    hasChoice: 0
+    choice:
+      optionA:
+        label: 
+        onChosen:
+          m_PersistentCalls:
+            m_Calls: []
+        nextIndex: 0
+      optionB:
+        label: 
+        onChosen:
+          m_PersistentCalls:
+            m_Calls: []
+        nextIndex: 0
+    continueToNextBlock: 1
+    nextBlockIndex: 1
+  - index: 1
+    lines:
+    - characterName: Cubestack Top
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: pway?~
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    hasChoice: 1
+    choice:
+      optionA:
+        label: Play
+        onChosen:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+              m_MethodName: EndDialogue
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        nextIndex: 1
+      optionB:
+        label: Leave
+        onChosen:
+          m_PersistentCalls:
+            m_Calls: []
+        nextIndex: 2
+    continueToNextBlock: 1
+    nextBlockIndex: 0
+  - index: 2
+    lines:
+    - characterName: Cubestack Bottom
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: then fuck off
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 8903271201154221246}
+            m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+            m_MethodName: SetIndex
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 1
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    hasChoice: 0
+    choice:
+      optionA:
+        label: Play
+        onChosen:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 0}
+              m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+              m_MethodName: EndDialogue
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+        nextIndex: 1
+      optionB:
+        label: 
+        onChosen:
+          m_PersistentCalls:
+            m_Calls: []
+        nextIndex: 2
+    continueToNextBlock: 0
+    nextBlockIndex: 1
 --- !u!114 &3067146188342534323
 MonoBehaviour:
   m_ObjectHideFlags: 0
