@@ -38,7 +38,18 @@ public class quatro_manager : MonoBehaviour
 
     private int current_bet = 0;
     private int raise_bet = 0;
-    private int mult = 1; //to check for reverse turns
+    private int mult = 1; 
+
+    private int global_bet = 0;
+    private int npc1_bet = 0;
+    private int npc2_bet = 0;
+    private int player_bet = 0;
+
+    private bool NPC1_folded = false;
+    private bool NPC2_folded = false;
+
+    public GameObject NPC1_cards;
+    public GameObject NPC2_cards;
 
     public static quatro_manager Instance { get; private set; }
 
@@ -56,15 +67,30 @@ public class quatro_manager : MonoBehaviour
         suffle_deck();
         prepare_deck_queue();
 
-        //make sure their hands are empty before starting a match
         NPC1_hand.Clear();
         NPC2_hand.Clear();
 
         pHand_manager.EliminateAllCards();
         player_hand.Clear();
 
+        NPC1_folded = false;
+        NPC2_folded = false;
+        is_match_over = false;
+        has_player_won = false;
+        waiting_player = false;
+        turn_index = 0;
+        mult = 1;
 
-        //give npc cards
+        global_bet = 15;
+        player_bet = 5;
+        npc1_bet = 5;
+        npc2_bet = 5;
+        current_bet = 5;
+        GameManager.Instance.current_money -= 5;
+
+        if (NPC1_cards != null) NPC1_cards.SetActive(true);
+        if (NPC2_cards != null) NPC2_cards.SetActive(true);
+
         for (int i = 0; i < 4; i++) {
             give_card(NPC1_hand);
         }
@@ -73,14 +99,11 @@ public class quatro_manager : MonoBehaviour
             give_card(NPC2_hand);
         }
 
-        //give player cards
-        
         for (int i = 0; i < 4; i++) {
             give_card(player_hand);
             pHand_manager.AddCardToHand(player_hand[i]);
         }
 
-        //set the first card on the table
         quatro_card_SO current_card = table_deck.Peek(); table_deck.Dequeue();
         table_hand.Add(current_card);
 
@@ -104,19 +127,28 @@ public class quatro_manager : MonoBehaviour
 
         while (!is_match_over)
         {   
-            //check for winners at the start of each round
-            if(NPC1_hand.Count == 0 || NPC2_hand.Count == 0) {
-                is_match_over = true;
-                break;
-            }
-
-            else if (player_hand.Count == 0) {
+            if ((NPC1_folded || NPC1_hand.Count == 0) && (NPC2_folded || NPC2_hand.Count == 0)) {
                 is_match_over = true;
                 has_player_won = true;
                 break;
             }
 
-            //update turns (if necessary)
+            if (!NPC1_folded && NPC1_hand.Count == 0) {
+                is_match_over = true;
+                break;
+            }
+
+            if (!NPC2_folded && NPC2_hand.Count == 0) {
+                is_match_over = true;
+                break;
+            }
+
+            if (player_hand.Count == 0) {
+                is_match_over = true;
+                has_player_won = true;
+                break;
+            }
+
             if (turn_index >= 3)
             {
                 turn_index = 0;
@@ -126,7 +158,15 @@ public class quatro_manager : MonoBehaviour
                 turn_index = 2;
             }
 
-            //turns
+            if (turn_index == 0 && NPC1_folded) {
+                turn_index = turn_index + (1 * mult);
+                continue;
+            }
+            if (turn_index == 2 && NPC2_folded) {
+                turn_index = turn_index + (1 * mult);
+                continue;
+            }
+
             if (turn_index == 1)
             {
                 Debug.Log("Player turn started.");
@@ -143,6 +183,11 @@ public class quatro_manager : MonoBehaviour
                 yield return new WaitForSeconds(1.0f); 
                 npc_turn();
                 
+                if (NPC1_folded && NPC2_folded) {
+                    is_match_over = true;
+                    has_player_won = true;
+                    break;
+                }
             }
 
             turn_index = turn_index + (1 * mult);
@@ -150,13 +195,15 @@ public class quatro_manager : MonoBehaviour
 
         if (has_player_won) {
             Debug.Log("Player wins");
+            GameManager.Instance.current_money += global_bet;
         }
         else {
             Debug.Log("player loses");
+
         }
 
         yield return new WaitForSeconds(1.0f);
-        p_interaction.EndInteraction();
+        player_fold();
 
     }
 
@@ -207,6 +254,19 @@ public class quatro_manager : MonoBehaviour
     void npc_turn()
     {
         List<quatro_card_SO> current_hand = (turn_index == 0) ? NPC1_hand : NPC2_hand;
+        
+        if (current_hand.Count >= 8) {
+            Debug.Log($"NPC {turn_index} folds due to having 8 or more cards!");
+            if (turn_index == 0) {
+                NPC1_folded = true;
+                if (NPC1_cards != null) NPC1_cards.SetActive(false);
+            } else {
+                NPC2_folded = true;
+                if (NPC2_cards != null) NPC2_cards.SetActive(false);
+            }
+            return;
+        }
+
         bool playedCard = false;
 
         for (int i = 0; i < current_hand.Count; i++)
@@ -226,6 +286,29 @@ public class quatro_manager : MonoBehaviour
         {
             Debug.Log($"NPC {turn_index} can't play and draws a card :(");
             give_card(current_hand);
+            
+            if (current_hand.Count >= 8) {
+                Debug.Log($"NPC {turn_index} folds immediately after drawing 8 or more cards!");
+                if (turn_index == 0) {
+                    NPC1_folded = true;
+                    if (NPC1_cards != null) NPC1_cards.SetActive(false);
+                } else {
+                    NPC2_folded = true;
+                    if (NPC2_cards != null) NPC2_cards.SetActive(false);
+                }
+                return;
+            }
+        }
+
+        if (current_hand.Count == 3) {
+            Debug.Log($"NPC {turn_index} raises by 10 because they have 3 cards!");
+            if (turn_index == 0) { npc1_bet += 10; } else { npc2_bet += 10; }
+            global_bet += 10;
+        }
+        else if (current_hand.Count == 1) {
+            Debug.Log($"NPC {turn_index} raises by 20 because they have 1 card!");
+            if (turn_index == 0) { npc1_bet += 20; } else { npc2_bet += 20; }
+            global_bet += 20;
         }
 
     }
@@ -254,9 +337,7 @@ public class quatro_manager : MonoBehaviour
         if (card.number > 9) {
             if (card.number == 10) {
                 List<quatro_card_SO> current_hand;
-                //10 : +4
                 if (turn_index == 0) {
-                    //give cards to player
                     for (int i = 0; i < 4; i++) {
                         give_card_to_player();
                     }
@@ -265,11 +346,9 @@ public class quatro_manager : MonoBehaviour
 
                 else {
                     if (turn_index == 1) {
-                    //give cards to npc2
                     current_hand = NPC2_hand;
                     }
                     else {
-                        //give cards to npc1
                         current_hand = NPC1_hand;
                     }
 
@@ -281,12 +360,10 @@ public class quatro_manager : MonoBehaviour
             }
             
             else if (card.number == 11) {
-                //11 : block
                 turn_index = turn_index + (1 * mult);
             }
             
             else {
-                //12 : reverse
                 mult = mult * -1;
             }
 
@@ -295,7 +372,7 @@ public class quatro_manager : MonoBehaviour
 
         card_view cardScript = t_hand.GetComponent<card_view>();
         cardScript.Initialize(card);
-        if(turn_index == 1) //player turn
+        if(turn_index == 1) 
                     end_player_turn();
     }
 
@@ -328,12 +405,25 @@ public class quatro_manager : MonoBehaviour
 
     public void player_finish_raise() {
         current_bet += raise_bet;
+        player_bet += raise_bet;
+        global_bet += raise_bet;
+        GameManager.Instance.current_money -= raise_bet;
         raise_bet_HUD.SetActive(false);
         waiting_player = false;
     }
 
     public void change_bet(int amount) {
-        raise_bet += amount;
+        int target_bet = raise_bet + amount;
+
+        if (target_bet < 5) {
+            target_bet = 5;
+        }
+
+        if (target_bet > GameManager.Instance.current_money) {
+            target_bet = GameManager.Instance.current_money;
+        }
+
+        raise_bet = target_bet;
 
         TMP_Text bet_text = raise_bet_HUD.GetComponentInChildren<TMP_Text>();        
         bet_text.text = raise_bet.ToString();
