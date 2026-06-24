@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HandScroll : MonoBehaviour
 {
@@ -14,28 +15,31 @@ public class HandScroll : MonoBehaviour
     void Update()
     {
         if (transform.childCount >= minimum_cards) {
-            float mouseXRatio = Input.mousePosition.x / Screen.width;
+            if (Mouse.current == null) return;
+
+            float mouseX = Mouse.current.position.ReadValue().x;
+            float mouseXRatio = mouseX / Screen.width;
 
             float moveDirection = 0f;
 
             // Mouse is near the right edge -> Move cards LEFT
             if (mouseXRatio > (1f - edgeThreshold))
             {
-                moveDirection = -1f;
+                moveDirection = -0.1f;
             }
 
             // Mouse is near the left edge -> Move cards RIGHT
             else if (mouseXRatio < edgeThreshold)
             {
-                moveDirection = 1f;
+                moveDirection = 0.1f;
             }
 
             if (moveDirection != 0f)
             {
-                float newX = transform.localPosition.x + (moveDirection * scrollSpeed * Time.deltaTime);
-                newX = Mathf.Clamp(newX, -maxScrollOffset, maxScrollOffset);
+                float newX = transform.localPosition.y + (moveDirection * scrollSpeed * Time.deltaTime);
+                newX = Mathf.Clamp(-maxScrollOffset, newX, maxScrollOffset);
 
-                transform.localPosition = new Vector3(newX, transform.localPosition.y, transform.localPosition.z);
+                transform.localPosition = new Vector3(transform.localPosition.x, newX, transform.localPosition.z);
             }
         
         }

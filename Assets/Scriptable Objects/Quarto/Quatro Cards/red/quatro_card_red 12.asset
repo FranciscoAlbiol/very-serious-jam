@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98502920167b7324c9f3ee6f3abc048a, type: 3}
   m_Name: quatro_card_red 12
   m_EditorClassIdentifier: Assembly-CSharp::quatro_card_SO
-  number: 11
+  number: 12
   color: 0
   card_sprite: {fileID: 95648977, guid: 1ed7243321de1bb4c9f38483256b357b, type: 3}
