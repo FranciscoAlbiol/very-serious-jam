@@ -69,6 +69,8 @@ public class poker_manager : MonoBehaviour
     {
         Debug.Log("starting poker");
         poker_scene.SetActive(true);
+        NPC1_cards.SetActive(true);
+        NPC2_cards.SetActive(true);
 
         waiting_player = false;
         turn_index = 0;
@@ -108,6 +110,10 @@ public class poker_manager : MonoBehaviour
         yield return StartCoroutine(npc_turn1(2));
         if (NPC2_folded) NPC2_cards.SetActive(false);
         
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            player_fold();
+        }
 
         //2. SHOW 3 CARDS FROM TABLE
         Debug.Log("Flop");
@@ -125,6 +131,11 @@ public class poker_manager : MonoBehaviour
         if (!NPC2_folded) {
             yield return StartCoroutine(npc_turn2(2, 3));
             if (NPC2_folded) NPC2_cards.SetActive(false);
+        }
+
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            player_fold();
         }
 
         //4. SHOW 2 CARDS FROM TABLE
@@ -145,6 +156,11 @@ public class poker_manager : MonoBehaviour
             if (NPC2_folded) NPC2_cards.SetActive(false);
         }
 
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            player_fold();
+        }
+
         //6. SHOW FINAL CARD FROM TABLE
         Debug.Log("River");
         show_table_cards(5, 5);
@@ -163,6 +179,12 @@ public class poker_manager : MonoBehaviour
             if (NPC2_folded) NPC2_cards.SetActive(false);
         }
 
+        if (NPC1_folded && NPC2_folded)  {
+            Debug.Log("Player wins");
+            yield return new WaitForSeconds(1f);
+            player_fold();
+        }
+
         //8. SHOW CARDS
         //not doing it here
         //add 2 cards in the table in front of each player
@@ -174,7 +196,17 @@ public class poker_manager : MonoBehaviour
         int pointsPlayer = calculate_points(player_hand); Debug.Log(pointsPlayer);
 
         //here's where you'd give the player money. if they win or not
+        if ((NPC1_folded || pointsPlayer >= pointsNPC1) && (NPC2_folded || pointsPlayer >= pointsNPC2)) {
+            Debug.Log("player wins");
+        }
+
+        else {
+            Debug.Log("plyer loses");
+        }
+
         //player_reward();
+        yield return new WaitForSeconds(1f);
+        player_fold();
     }
 
     IEnumerator player_turn() {
