@@ -10,7 +10,6 @@ using UnityEngine.InputSystem;
 public class quatro_manager : MonoBehaviour
 {
     public PlayerInteraction p_interaction;
-    public GameObject quatro_scene;
 
     public quatro_card_SO[] deck;
 
@@ -102,7 +101,6 @@ public class quatro_manager : MonoBehaviour
     IEnumerator quatro_flow_maganer()
     {
         yield return new WaitForSeconds(1.0f); 
-        quatro_scene.SetActive(true);
 
         while (!is_match_over)
         {   
