@@ -34,6 +34,7 @@ public class quatro_manager : MonoBehaviour
 
     private int turn_index = 0;
     private bool is_match_over = false;
+    private bool has_player_won = false;
     private bool waiting_player = false;
 
     private int current_bet = 0;
@@ -104,12 +105,30 @@ public class quatro_manager : MonoBehaviour
         quatro_scene.SetActive(true);
 
         while (!is_match_over)
-        {
+        {   
+            //check for winners at the start of each round
+            if(NPC1_hand.Count == 0 || NPC2_hand.Count == 0) {
+                is_match_over = true;
+                break;
+            }
+
+            else if (player_hand.Count == 0) {
+                is_match_over = true;
+                has_player_won = true;
+                break;
+            }
+
+            //update turns (if necessary)
             if (turn_index >= 3)
             {
                 turn_index = 0;
             }
 
+            else if (turn_index < 0) {
+                turn_index = 2;
+            }
+
+            //turns
             if (turn_index == 1)
             {
                 Debug.Log("Player turn started.");
@@ -130,6 +149,16 @@ public class quatro_manager : MonoBehaviour
 
             turn_index = turn_index + (1 * mult);
         }
+
+        if (has_player_won) {
+            Debug.Log("Player wins");
+        }
+        else {
+            Debug.Log("player loses");
+        }
+
+        yield return new WaitForSeconds(1.0f);
+        p_interaction.EndInteraction();
 
     }
 
