@@ -15,13 +15,14 @@ public class SpinningWheel : MonoBehaviour
 
     private bool isSpinning = false;
 
-    void Start()
+    public static SpinningWheel Instance { get; private set; }
+
+    private void Awake()
     {
-        UpdateWheelVisuals();
-        StartSpin();
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    // Call this whenever you change the percentage dynamically
     public void UpdateWheelVisuals()
     {
         if (option2Image != null)
@@ -32,6 +33,8 @@ public class SpinningWheel : MonoBehaviour
 
     public void StartSpin()
     {
+        UpdateWheelVisuals();
+
         if (!isSpinning)
         {
             StartCoroutine(SpinRoutine());
@@ -40,17 +43,16 @@ public class SpinningWheel : MonoBehaviour
 
     private IEnumerator SpinRoutine()
     {
+        
         isSpinning = true;
         
         float elapsed = 0f;
-        // Base random rotations + a completely random final angle
         float randomFinalAngle = Random.Range(0f, 360f);
         float totalRotation = (360f * 5) + randomFinalAngle; // 5 full loops + extra
 
         while (elapsed < spinDuration)
         {
             elapsed += Time.deltaTime;
-            // Smoothly slow down over time (Easing out)
             float t = elapsed / spinDuration;
             t = t * t * (3f - 2f * t); 
 
@@ -65,21 +67,24 @@ public class SpinningWheel : MonoBehaviour
     }
 
     private void DetermineWinner()
+{
+    float rawAngle = wheelTransform.localEulerAngles.z % 360f;
+    if (rawAngle < 0) rawAngle += 360f;
+
+    //float finalAngle = (180f - rawAngle + 360f) % 360f;
+    
+    Debug.Log("Final calculated angle: " + rawAngle);
+
+    float option2AngleSize = option2Chance * 360f;
+    Debug.Log("Salvation target size: 0 to " + option2AngleSize);
+
+    if (rawAngle <= option2AngleSize)
     {
-        // Get the final angle normalized between 0 and 360 degrees
-        float finalAngle = wheelTransform.localEulerAngles.z % 360f;
-
-        // Unity rotates counter-clockwise. If your Fill Origin is "Top",
-        // Option 2 covers the angles moving counter-clockwise from the top.
-        float option2AngleSize = option2Chance * 360f;
-
-        if (finalAngle <= option2AngleSize)
-        {
-            Debug.Log("Option 2 Wins! (10% side)");
-        }
-        else
-        {
-            Debug.Log("Option 1 Wins! (90% side)");
-        }
+        Debug.Log("Salvation !!!");
     }
+    else
+    {
+        Debug.Log("No salvation :((");
+    }
+}
 }
