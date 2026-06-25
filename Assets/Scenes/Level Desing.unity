@@ -12899,6 +12899,10 @@ PrefabInstance:
       value: salvation wheel minigame
       objectReference: {fileID: 0}
     - target: {fileID: 7930856926603129173, guid: 93494a2109c27fd409eef560b7f237e6, type: 3}
+      propertyPath: spinDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930856926603129173, guid: 93494a2109c27fd409eef560b7f237e6, type: 3}
       propertyPath: option2Chance
       value: 0.1
       objectReference: {fileID: 0}

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2026258400, guid: fe808e723ede5dd4194ec8272d4e60af, type: 3}
+  m_Sprite: {fileID: 170084714, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
     lines:
     - characterName: Tres
       characterRenderer: {fileID: 5866692760967303686}
-      characterSprite: {fileID: 2026258400, guid: fe808e723ede5dd4194ec8272d4e60af, type: 3}
+      characterSprite: {fileID: 170084714, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
       text: There actually used to be five of us, but Cinco got stabbed to death
         in a dark alleyway.
       voiceLine: {fileID: 8300000, guid: 70b43ff2426f33242ace6d33c624eeed, type: 3}
@@ -290,7 +290,7 @@ MonoBehaviour:
           m_Calls: []
     - characterName: Tres
       characterRenderer: {fileID: 5866692760967303686}
-      characterSprite: {fileID: 2026258400, guid: fe808e723ede5dd4194ec8272d4e60af, type: 3}
+      characterSprite: {fileID: 170084714, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
       text: Which is a shame, because he owed me 5 dollars.
       voiceLine: {fileID: 8300000, guid: 70b43ff2426f33242ace6d33c624eeed, type: 3}
       onLineFinished:

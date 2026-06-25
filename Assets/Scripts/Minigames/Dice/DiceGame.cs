@@ -32,7 +32,6 @@ public class DiceGame : MonoBehaviour
     public GameObject betScreen;
     public TextMeshProUGUI betAmountText;
     public Button betIncreaseButton;
-    public Button betDecreaseButton;
     public Button lockBetButton;
     public TextMeshProUGUI houseTotalText;
     public TextMeshProUGUI playerTotalText;
@@ -101,8 +100,7 @@ public class DiceGame : MonoBehaviour
 
     private void RefreshBetUI()
     {
-        betAmountText.text             = $"Bet: ${currentBet}";
-        betDecreaseButton.interactable = currentBet > minBet;
+        betAmountText.text             = $"${currentBet}";
         betIncreaseButton.interactable = currentBet < GameManager.Instance.current_money;
     }
 
@@ -110,8 +108,8 @@ public class DiceGame : MonoBehaviour
     {
         CurrentPhase = Phase.HouseRolling;
         HideAll();
-        houseTotalText.text  = "Satan: -";
-        playerTotalText.text = "You: -";
+        houseTotalText.text  = "";
+        playerTotalText.text = "";
         throwButton.SetActive(false);
 
         int hDie1 = Random.Range(1, 7);
@@ -123,7 +121,7 @@ public class DiceGame : MonoBehaviour
             houseDie1LandPoint.position, houseDie2LandPoint.position,
             hDie1, hDie2));
 
-        houseTotalText.text = $"Satan: {houseTotal}";
+        houseTotalText.text = houseTotal.ToString();;
 
         CurrentPhase = Phase.PlayerRolling;
         throwButton.SetActive(true);
@@ -139,7 +137,7 @@ public class DiceGame : MonoBehaviour
     {
         CurrentPhase = Phase.Result;
         throwButton.SetActive(false);
-        playerTotalText.text = "You: -";
+        playerTotalText.text = "";
 
         int pDie1 = Random.Range(1, 7);
         int pDie2 = Random.Range(1, 7);
@@ -150,7 +148,7 @@ public class DiceGame : MonoBehaviour
             playerDie1LandPoint.position, playerDie2LandPoint.position,
             pDie1, pDie2));
 
-        playerTotalText.text = $"You: {playerTotal}";
+        playerTotalText.text = playerTotal.ToString();;
 
         yield return new WaitForSeconds(0.6f);
         ShowResult();
@@ -176,6 +174,8 @@ public class DiceGame : MonoBehaviour
     {
         StopAllCoroutines();
         CurrentPhase = Phase.Idle;
+        if (houseTotalText  != null) houseTotalText .gameObject.SetActive(false);
+        if (playerTotalText != null) playerTotalText.gameObject.SetActive(false);
         HideAll();
         HideDice();
     }
@@ -190,11 +190,25 @@ public class DiceGame : MonoBehaviour
 
         die1.transform.position = startPos1;
         die2.transform.position = startPos2;
+
+        Vector3 spinAxis1 = Random.onUnitSphere;
+        Vector3 spinAxis2 = Random.onUnitSphere;
+        float spinSpeed1  = Random.Range(400f, 720f);
+        float spinSpeed2  = Random.Range(400f, 720f);
+
+        Quaternion spinRot1 = Random.rotation;
+        Quaternion spinRot2 = Random.rotation;
+
+        die1.transform.rotation = spinRot1;
+        die2.transform.rotation = spinRot2;
+
         die1.gameObject.SetActive(true);
         die2.gameObject.SetActive(true);
 
-        float elapsed     = 0f;
-        float nextFlicker = 0f;
+        Quaternion landRot1 = die1.GetFaceRotation(result1);
+        Quaternion landRot2 = die2.GetFaceRotation(result2);
+
+        float elapsed = 0f;
 
         while (elapsed < diceDropDuration)
         {
@@ -203,12 +217,19 @@ public class DiceGame : MonoBehaviour
 
             die1.transform.position = Vector3.Lerp(startPos1, landPos1, easedT);
             die2.transform.position = Vector3.Lerp(startPos2, landPos2, easedT);
-
-            if (elapsed >= nextFlicker)
+            if (t < 0.8f)
             {
-                die1.ShowFace(Random.Range(1, 7));
-                die2.ShowFace(Random.Range(1, 7));
-                nextFlicker = elapsed + flickerRate;
+                spinRot1 = Quaternion.AngleAxis(spinSpeed1 * Time.deltaTime, spinAxis1) * spinRot1;
+                spinRot2 = Quaternion.AngleAxis(spinSpeed2 * Time.deltaTime, spinAxis2) * spinRot2;
+                die1.transform.rotation = spinRot1;
+                die2.transform.rotation = spinRot2;
+            }
+            else
+            {
+                float snapT = (t - 0.8f) / 0.2f;
+                float smoothT = snapT * snapT * (3f - 2f * snapT);
+                die1.transform.rotation = Quaternion.Slerp(spinRot1, landRot1, smoothT);
+                die2.transform.rotation = Quaternion.Slerp(spinRot2, landRot2, smoothT);
             }
 
             elapsed += Time.deltaTime;
@@ -225,8 +246,6 @@ public class DiceGame : MonoBehaviour
     {
         if (betScreen    != null) betScreen   .SetActive(false);
         if (throwButton  != null) throwButton .SetActive(false);
-        if (houseTotalText  != null) houseTotalText .gameObject.SetActive(false);
-        if (playerTotalText != null) playerTotalText.gameObject.SetActive(false);
     }
 
     private void HideDice()
