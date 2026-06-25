@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
         case "dice":
             DiceGame.Instance.StartGame();
             break;
+        case "wheel":
+            SpinningWheel.Instance.StartSpin();
+            break;
         default:
             Debug.Log("No minigame found.");
             break;
