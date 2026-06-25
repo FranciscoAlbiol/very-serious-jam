@@ -42,6 +42,9 @@ public class poker_manager : MonoBehaviour
     public GameObject poker_scene;
     public Sprite back_card_sprite;
 
+    public GameObject indicator_speech_bubble;
+    public TMP_Text indicator_text;
+
     private bool waiting_player = false;
     private int turn_index = 0;
     private int current_bet = 0; 
@@ -79,6 +82,8 @@ public class poker_manager : MonoBehaviour
         raise_bet = 0;
         NPC1_folded = false;
         NPC2_folded = false;
+
+        if (indicator_speech_bubble != null) indicator_speech_bubble.SetActive(false);
 
         current_min_bet = 5;
         player_bet = 5;
@@ -221,17 +226,32 @@ public class poker_manager : MonoBehaviour
         if(npcIndex == 0) currentNPC = NPC1_hand;
         else currentNPC = NPC2_hand;
 
+        SpriteRenderer bubbleSprite = indicator_speech_bubble.GetComponent<SpriteRenderer>();
+        if (bubbleSprite != null) {
+            bubbleSprite.flipY = (npcIndex != 0);
+        }
+
+        indicator_speech_bubble.SetActive(true);
+
         if(currentNPC[0].number + currentNPC[1].number < 10
            && (currentNPC[0].number != currentNPC[1].number
                || currentNPC[0].suit != currentNPC[1].suit)) {
 
             Debug.Log("I fold!");
+            indicator_text.text = "I fold.";
+            yield return new WaitForSeconds(1.5f);
+            indicator_speech_bubble.SetActive(false);
+
             if(npcIndex == 0) NPC1_folded = true;
             else NPC2_folded = true;
         }
         
         else {
             Debug.Log("I keep playing!");
+            indicator_text.text = "I call.";
+            yield return new WaitForSeconds(1.5f);
+            indicator_speech_bubble.SetActive(false);
+
             if(npcIndex == 0) { npc1_bet += 5; global_bet += 5; }
             else { npc2_bet += 5; global_bet += 5; }
         }
@@ -252,9 +272,20 @@ public class poker_manager : MonoBehaviour
             npcCurrentBet = npc2_bet;
         }
 
+        SpriteRenderer bubbleSprite = indicator_speech_bubble.GetComponent<SpriteRenderer>();
+        if (bubbleSprite != null) {
+            bubbleSprite.flipY = (npcIndex != 0);
+        }
+
+        indicator_speech_bubble.SetActive(true);
+
         float pressureFoldChance = (current_min_bet / 100) * 5f;
         if (UnityEngine.Random.Range(0f, 100f) <= pressureFoldChance) {
             Debug.Log($"NPC {npcIndex} folds due to high bet pressure!");
+            indicator_text.text = "Too rich for my blood. Fold.";
+            yield return new WaitForSeconds(1.5f);
+            indicator_speech_bubble.SetActive(false);
+
             if (npcIndex == 0) NPC1_folded = true;
             else NPC2_folded = true;
             yield return new WaitForSeconds(1f);
@@ -267,6 +298,10 @@ public class poker_manager : MonoBehaviour
         if (hand.hasFourOfAKind 
             || hand.hasFullHouse || bluff <= 10f) {
            Debug.Log("I raise my bet!");
+           indicator_text.text = "I raise by 10!";
+           yield return new WaitForSeconds(1.5f);
+           indicator_speech_bubble.SetActive(false);
+
            int npcRaiseAmount = (current_min_bet - npcCurrentBet) + 10;
            current_min_bet += 10;
 
@@ -276,13 +311,26 @@ public class poker_manager : MonoBehaviour
 
         else if (!hand.hasPair && !hand.hasTwoPair) {
            Debug.Log("I stop playing!");
+           indicator_text.text = "I'm out. Fold.";
+           yield return new WaitForSeconds(1.5f);
+           indicator_speech_bubble.SetActive(false);
+
            if(npcIndex == 0) NPC1_folded = true;
            else NPC2_folded = true;
         }
 
         else {
-            Debug.Log("I keep playing");
             int npcCallAmount = current_min_bet - npcCurrentBet;
+            if (npcCallAmount == 0) {
+                Debug.Log("I check");
+                indicator_text.text = "Check.";
+            } else {
+                Debug.Log("I call");
+                indicator_text.text = "I'll call.";
+            }
+            yield return new WaitForSeconds(1.5f);
+            indicator_speech_bubble.SetActive(false);
+
             if(npcIndex == 0) { npc1_bet += npcCallAmount; global_bet += npcCallAmount; }
             else { npc2_bet += npcCallAmount; global_bet += npcCallAmount; }
         }
