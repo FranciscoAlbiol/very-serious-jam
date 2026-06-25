@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7704484381985917400}
   - component: {fileID: 711595986070803818}
   - component: {fileID: 7133950451154045036}
+  - component: {fileID: 1362144729117479399}
   m_Layer: 0
   m_Name: NPCcam
   m_TagString: Untagged
@@ -128,6 +129,14 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!81 &1362144729117479399
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294434983047205065}
+  m_Enabled: 1
 --- !u!1 &3572397972388486120
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +316,7 @@ MonoBehaviour:
         nextIndex: 2
     continueToNextBlock: 0
     nextBlockIndex: 1
+  currentIndex: 0
 --- !u!114 &3067146188342534323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,13 +378,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7880313861595403924}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071069}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9117224704742619525}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!212 &1973625132079535063
 SpriteRenderer:
   serializedVersion: 2

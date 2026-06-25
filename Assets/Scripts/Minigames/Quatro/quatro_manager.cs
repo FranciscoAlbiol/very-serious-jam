@@ -472,6 +472,11 @@ public class quatro_manager : MonoBehaviour
         waiting_player = false;
     }
 
+    public void remove_bet_hud(){
+        raise_bet_HUD.SetActive(false);
+        action_buttons.SetActive(true);
+    }
+
     public void change_bet(int amount) {
         int target_bet = raise_bet + amount;
 
