@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17fa19b4c6488347bee94f9e64d47d3, type: 3}
   m_Name: bottle_luck 3
   m_EditorClassIdentifier: Assembly-CSharp::bottle_SO
+  name: Fruity paradise
+  description: Makes you feel way luckier.
   price: 400
   buff: 1
   buff_mult: 4

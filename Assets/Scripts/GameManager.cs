@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
         case "wheel":
             SpinningWheel.Instance.StartSpin();
             break;
+        case "bar":
+            bar_controller.Instance.start_bar();
+            break;
         default:
             Debug.Log("No minigame found.");
             break;

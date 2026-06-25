@@ -2,10 +2,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class bar_controller : MonoBehaviour
 {
     public Camera bar_camera;
+
+    //UI
+    public GameObject bar_dialogue_object;
+    public TMP_Text nameText;
+    public TMP_Text descText;
+    public TMP_Text priceText;
 
     public static bar_controller Instance { get; private set; }
     
@@ -33,7 +40,7 @@ public class bar_controller : MonoBehaviour
         }
     }
 
-    void start_bar() {
+    public void start_bar() {
         player_in_bar = true;
     }
 
@@ -52,8 +59,17 @@ public class bar_controller : MonoBehaviour
             Debug.Log(clickedbottle);
             if (clickedbottle != null)
             {
-                Debug.Log(clickedbottle.bottle_data.price);
+                display_drink_info(clickedbottle.bottle_data);
             }
         }
+    }
+
+    void display_drink_info(bottle_SO data) {
+        bar_dialogue_object.SetActive(true);
+
+        nameText.text = data.name;
+        descText.text = data.description;
+
+        priceText.text = data.price.ToString();
     }
 }
