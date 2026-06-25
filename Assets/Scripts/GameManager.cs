@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public quatro_manager quatro;
     public poker_manager poker;
+    public DiceGame dice;
     public SlotMachine slotMachine;
 
     void Awake()
@@ -45,6 +46,9 @@ public class GameManager : MonoBehaviour
             quatro_manager.Instance.start_quatro();
             break;
         case "slots":
+            break;
+        case "dice":
+            DiceGame.Instance.StartGame();
             break;
         default:
             Debug.Log("No minigame found.");

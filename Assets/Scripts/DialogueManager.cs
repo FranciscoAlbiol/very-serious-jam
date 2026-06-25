@@ -66,6 +66,8 @@ public class DialogueManager : MonoBehaviour
         if (visibleCount >= targetText.Length)
         {
             isTyping = false;
+            audioSource.loop = false;
+            audioSource.Stop();
             StartCoroutine(ReadyNextFrame());
         }
     }
@@ -143,6 +145,7 @@ public class DialogueManager : MonoBehaviour
         {
             audioSource.Stop();
             audioSource.clip = line.voiceLine;
+            audioSource.loop = true;
             audioSource.Play();
         }
 
@@ -169,6 +172,8 @@ public class DialogueManager : MonoBehaviour
             isTyping = false;
             visibleCount = targetText.Length;
             dialogueText.text = targetText;
+            audioSource.loop = false;
+            audioSource.Stop();
             buttonReady = false;
             StartCoroutine(ReadyNextFrame());
             return;

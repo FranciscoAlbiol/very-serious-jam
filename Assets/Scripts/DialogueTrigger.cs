@@ -5,19 +5,18 @@ public class DialogueTrigger : MonoBehaviour
 {
     public DialogueBlock[] blocks;
 
-    private int currentIndex = 0;
+    public int currentIndex = 0;
     private HashSet<int> seenIndices = new HashSet<int>();
 
     public void StartDialogue(int index)
     {
-        currentIndex = index;
         DialogueManager.instance.StartBlock(blocks, index, this);
     }
 
     public void StartDialogue()
     {
         if (blocks == null || blocks.Length == 0) return;
-        StartDialogue(currentIndex);
+        DialogueManager.instance.StartBlock(blocks, currentIndex, this);
     }
 
     public DialogueBlock GetBlock(int index)
