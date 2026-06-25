@@ -40,15 +40,15 @@ public class SlotMachine : MonoBehaviour
 
     public int minBet = 10;
 
-    [Header("UI")]
     public TextMeshProUGUI betText;
+    public TextMeshProUGUI shitText;
 
     public UnityEvent<SpinResult> onSpinComplete;
     public UnityEvent<string>     onError;
     public UnityEvent<int>        onBetChanged;
     public UnityEvent<int>        onMoneyChanged;
 
-    public bool IsSpinning  { get; private set; }
+    public bool IsSpinning;
     public int  CurrentBet  { get; private set; }
 
     void Awake()
@@ -72,6 +72,7 @@ public class SlotMachine : MonoBehaviour
     {
         if (IsSpinning) return;
 
+        Debug.Log("buhh");
         int max = Mathf.Max(minBet, GameManager.Instance.current_money);
         CurrentBet = Mathf.Clamp(CurrentBet, minBet, max);
 
@@ -121,6 +122,7 @@ public class SlotMachine : MonoBehaviour
         };
 
         onSpinComplete?.Invoke(result);
+        shitText.text = BuildMessage(outcome, delta, CurrentBet);
         Debug.Log(BuildMessage(outcome, delta, CurrentBet));
         IsSpinning = false;
     }
@@ -154,13 +156,13 @@ public class SlotMachine : MonoBehaviour
         string sign = delta >= 0 ? "+" : "";
         return s switch
         {
-            Symbol.Skull      => $"Lost all {bet} Dollars. ({sign}{delta})",
-            Symbol.BrokenCoin => $"Lost 50% of {bet}. ({sign}{delta})",
-            Symbol.Crack      => $"Lost 25% of {bet}. ({sign}{delta})",
-            Symbol.Clover     => $"Won 25% of {bet}. ({sign}{delta})",
-            Symbol.Star       => $"Won 50% of {bet}. ({sign}{delta})",
-            Symbol.Diamond    => $"Won 100% of {bet}. ({sign}{delta})",
-            Symbol.Seven      => $"Won 200% of {bet}! ({sign}{delta})",
+            Symbol.Skull      => $"LOSE 100%. ({sign}{delta})",
+            Symbol.BrokenCoin => $"LOSE 50%. ({sign}{delta})",
+            Symbol.Crack      => $"LOSE 25%. ({sign}{delta})",
+            Symbol.Clover     => $"WIN 25%. ({sign}{delta})",
+            Symbol.Star       => $"WIN 50%. ({sign}{delta})",
+            Symbol.Diamond    => $"WIN 100%. ({sign}{delta})",
+            Symbol.Seven      => $"WIN 200%! ({sign}{delta})",
             _                 => "idfk"
         };
     }

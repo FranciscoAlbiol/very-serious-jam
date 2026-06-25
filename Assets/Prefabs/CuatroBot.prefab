@@ -190,7 +190,7 @@ MonoBehaviour:
     lines:
     - characterName: Cuatro
       characterRenderer: {fileID: 3830917958110155178}
-      characterSprite: {fileID: 1754831656, guid: fe808e723ede5dd4194ec8272d4e60af, type: 3}
+      characterSprite: {fileID: -485568235, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
       text: "\u201CCuatro\u201D is actually the correct way to spell four in Spanish,
         but the game is called Quatro because the devs, and I quote, thought it \u201Csounds
         cooler this way\u201D."
@@ -200,7 +200,7 @@ MonoBehaviour:
           m_Calls: []
     - characterName: Cuatro
       characterRenderer: {fileID: 3830917958110155178}
-      characterSprite: {fileID: 1754831656, guid: fe808e723ede5dd4194ec8272d4e60af, type: 3}
+      characterSprite: {fileID: -485568235, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
       text: "Thanks to them I can\u2019t share a name with my favourite game. Awful."
       voiceLine: {fileID: 8300000, guid: 70b43ff2426f33242ace6d33c624eeed, type: 3}
       onLineFinished:
@@ -340,7 +340,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1754831656, guid: fe808e723ede5dd4194ec8272d4e60af, type: 3}
+  m_Sprite: {fileID: -485568235, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
