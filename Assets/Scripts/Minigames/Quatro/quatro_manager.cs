@@ -31,6 +31,9 @@ public class quatro_manager : MonoBehaviour
     public GameObject raise_bet_HUD;
     public GameObject poker_scene;
 
+    public GameObject indicator_speech_bubble;
+    public TMP_Text indicator_text;
+
     private int turn_index = 0;
     private bool is_match_over = false;
     private bool has_player_won = false;
@@ -181,8 +184,22 @@ public class quatro_manager : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(1.0f); 
-                npc_turn();
+                SpriteRenderer PB_render = indicator_speech_bubble.GetComponent<SpriteRenderer>();
+
+                if (turn_index == 0) {
+                    PB_render.flipY = false;
+                }
+
+                else {
+                    PB_render.flipY = true;
+                }
+
+                indicator_speech_bubble.SetActive(true);
+                indicator_text.text = "It's my turn!";
+                yield return new WaitForSeconds(2.0f); 
+                indicator_speech_bubble.SetActive(false);
+                yield return StartCoroutine(npc_turn_routine());
+                yield return new WaitForSeconds(0.5f); 
                 
                 if (NPC1_folded && NPC2_folded) {
                     is_match_over = true;
@@ -271,13 +288,28 @@ public class quatro_manager : MonoBehaviour
         }
     }
 
-    void npc_turn()
+    IEnumerator npc_turn_routine()
     {
-        List<quatro_card_SO> current_hand = (turn_index == 0) ? NPC1_hand : NPC2_hand;
+        List<quatro_card_SO> current_hand;
+
+        SpriteRenderer PB_render = p_hand.GetComponent<SpriteRenderer>();
+         if (turn_index == 0) {
+            current_hand = NPC1_hand;
+         }
+
+         else {
+            current_hand = NPC2_hand;
+         }
         
         float foldChance = (global_bet / 100) * 5f;
         if (UnityEngine.Random.Range(0f, 100f) <= foldChance) {
             Debug.Log($"NPC {turn_index} folds due to global pool pressure ({foldChance}% chance)!");
+            
+            indicator_speech_bubble.SetActive(true);
+            indicator_text.text = "I'm not playing this.";
+            yield return new WaitForSeconds(1.0f);
+            indicator_speech_bubble.SetActive(false);
+
             if (turn_index == 0) {
                 NPC1_folded = true;
                 if (NPC1_cards != null) NPC1_cards.SetActive(false);
@@ -285,11 +317,17 @@ public class quatro_manager : MonoBehaviour
                 NPC2_folded = true;
                 if (NPC2_cards != null) NPC2_cards.SetActive(false);
             }
-            return;
+            yield break;
         }
 
         if (current_hand.Count >= 8) {
             Debug.Log($"NPC {turn_index} folds due to having 8 or more cards!");
+            
+            indicator_speech_bubble.SetActive(true);
+            indicator_text.text = "I'm not playing this.";
+            yield return new WaitForSeconds(1.0f);
+            indicator_speech_bubble.SetActive(false);
+
             if (turn_index == 0) {
                 NPC1_folded = true;
                 if (NPC1_cards != null) NPC1_cards.SetActive(false);
@@ -297,7 +335,7 @@ public class quatro_manager : MonoBehaviour
                 NPC2_folded = true;
                 if (NPC2_cards != null) NPC2_cards.SetActive(false);
             }
-            return;
+            yield break;
         }
 
         int currentNpcBet = (turn_index == 0) ? npc1_bet : npc2_bet;
@@ -326,10 +364,22 @@ public class quatro_manager : MonoBehaviour
         if (!playedCard)
         {
             Debug.Log($"NPC {turn_index} can't play and draws a card :(");
+            
+            indicator_speech_bubble.SetActive(true);
+            indicator_text.text = "I can play nothing...";
+            yield return new WaitForSeconds(1.0f);
+            indicator_speech_bubble.SetActive(false);
+            
             give_card(current_hand);
             
             if (current_hand.Count >= 8) {
                 Debug.Log($"NPC {turn_index} folds immediately after drawing 8 or more cards!");
+                
+                indicator_speech_bubble.SetActive(true);
+                indicator_text.text = "I'm not playing this.";
+                yield return new WaitForSeconds(1.0f);
+                indicator_speech_bubble.SetActive(false);
+
                 if (turn_index == 0) {
                     NPC1_folded = true;
                     if (NPC1_cards != null) NPC1_cards.SetActive(false);
@@ -337,21 +387,39 @@ public class quatro_manager : MonoBehaviour
                     NPC2_folded = true;
                     if (NPC2_cards != null) NPC2_cards.SetActive(false);
                 }
-                return;
+                yield break;
             }
         }
+        else
+        {
+            if (current_hand.Count == 2) {
+                Debug.Log($"NPC {turn_index} raises by 10 because they have 2 cards!");
+                
+                indicator_speech_bubble.SetActive(true);
+                indicator_text.text = "I only have 2 cards left.";
+                yield return new WaitForSeconds(1.0f);
+                indicator_text.text = "I raise by 10";
+                yield return new WaitForSeconds(1.0f);
+                indicator_speech_bubble.SetActive(false);
 
-        if (current_hand.Count == 3) {
-            Debug.Log($"NPC {turn_index} raises by 10 because they have 3 cards!");
-            current_bet += 10;
-            if (turn_index == 0) { npc1_bet += 10; } else { npc2_bet += 10; }
-            global_bet += 10;
-        }
-        else if (current_hand.Count == 1) {
-            Debug.Log($"NPC {turn_index} raises by 20 because they have 1 card!");
-            current_bet += 20;
-            if (turn_index == 0) { npc1_bet += 20; } else { npc2_bet += 20; }
-            global_bet += 20;
+                current_bet += 10;
+                if (turn_index == 0) { npc1_bet += 10; } else { npc2_bet += 10; }
+                global_bet += 10;
+            }
+            else if (current_hand.Count == 1) {
+                Debug.Log($"NPC {turn_index} raises by 20 because they have 1 card!");
+                
+                indicator_speech_bubble.SetActive(true);
+                indicator_text.text = "I only have 1 cards left.";
+                yield return new WaitForSeconds(1.0f);
+                indicator_text.text = "I raise by 20";
+                yield return new WaitForSeconds(1.0f);
+                indicator_speech_bubble.SetActive(false);
+
+                current_bet += 20;
+                if (turn_index == 0) { npc1_bet += 20; } else { npc2_bet += 20; }
+                global_bet += 20;
+            }
         }
 
     }
