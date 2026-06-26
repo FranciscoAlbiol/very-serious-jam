@@ -18,6 +18,8 @@ public class bar_controller : MonoBehaviour
     
 
     public bool player_in_bar = false;
+    public AudioSource bar_buy; 
+    public AudioSource bar_drink; 
 
     private void Awake()
     {
@@ -96,7 +98,7 @@ public class bar_controller : MonoBehaviour
             bottle_script clickedbottle = hit.collider.GetComponent<bottle_script>();
             Debug.Log(clickedbottle);
 
-            if (clickedbottle != null)
+            if (clickedbottle != null && GameManager.Instance.current_money >= clickedbottle.bottle_data.price)
             {
                 if(clickedbottle.bottle_data.buff == Buff.luck) {
                     BuffManager.Instance.luckTier = clickedbottle.bottle_data.buff_tier;
@@ -107,8 +109,8 @@ public class bar_controller : MonoBehaviour
 
                 clickedbottle.gameObject.SetActive(false);
                 GameManager.Instance.current_money -= clickedbottle.bottle_data.price;
-                
-                
+                bar_drink.Play(); 
+                bar_buy.Play();
             }
 
         }
