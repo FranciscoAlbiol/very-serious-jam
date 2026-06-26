@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 8903271201154221246}
   - component: {fileID: 3067146188342534323}
   - component: {fileID: 4320397493531211733}
+  - component: {fileID: 3604387881821385518}
   m_Layer: 0
   m_Name: JohnNPC
   m_TagString: Untagged
@@ -188,134 +189,120 @@ MonoBehaviour:
   blocks:
   - index: 0
     lines:
-    - characterName: Cubestack Top
+    - characterName: Win_ERR
       characterRenderer: {fileID: 1973625132079535063}
-      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-      text: hiiii uwu
-      voiceLine: {fileID: 0}
+      characterSprite: {fileID: -578410520, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: AWW [quack.] YEAH
+      voiceLine: {fileID: 8300000, guid: 71dbf27b78e974748befc2f08269cd95, type: 3}
       onLineFinished:
         m_PersistentCalls:
           m_Calls: []
-    - characterName: Cubestack Middle
+    - characterName: Win_ERR
       characterRenderer: {fileID: 1973625132079535063}
-      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-      text: balls idk
-      voiceLine: {fileID: 0}
+      characterSprite: {fileID: -578410520, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: I WIN ANOTHER [Hot ladies in your area] TONIGHT BABY Y Y Y!!1!
+      voiceLine: {fileID: 8300000, guid: 71dbf27b78e974748befc2f08269cd95, type: 3}
       onLineFinished:
         m_PersistentCalls:
           m_Calls: []
-    - characterName: Cubestack Bottom
+    - characterName: Win_ERR
       characterRenderer: {fileID: 1973625132079535063}
-      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-      text: quack
-      voiceLine: {fileID: 0}
-      onLineFinished:
-        m_PersistentCalls:
-          m_Calls: []
-    hasChoice: 0
-    choice:
-      optionA:
-        label: 
-        onChosen:
-          m_PersistentCalls:
-            m_Calls: []
-        nextIndex: 0
-      optionB:
-        label: 
-        onChosen:
-          m_PersistentCalls:
-            m_Calls: []
-        nextIndex: 0
-    continueToNextBlock: 1
-    nextBlockIndex: 1
-  - index: 1
-    lines:
-    - characterName: Cubestack Top
-      characterRenderer: {fileID: 1973625132079535063}
-      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-      text: pway?~
-      voiceLine: {fileID: 0}
-      onLineFinished:
-        m_PersistentCalls:
-          m_Calls: []
-    hasChoice: 1
-    choice:
-      optionA:
-        label: Play
-        onChosen:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-              m_MethodName: EndDialogue
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
-        nextIndex: 1
-      optionB:
-        label: Leave
-        onChosen:
-          m_PersistentCalls:
-            m_Calls: []
-        nextIndex: 2
-    continueToNextBlock: 1
-    nextBlockIndex: 0
-  - index: 2
-    lines:
-    - characterName: Cubestack Bottom
-      characterRenderer: {fileID: 1973625132079535063}
-      characterSprite: {fileID: 21300000, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
-      text: then fuck off
-      voiceLine: {fileID: 0}
+      characterSprite: {fileID: -578410520, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: "I\u2019M SO E XCITE D I COULD\u2013"
+      voiceLine: {fileID: 8300000, guid: 71dbf27b78e974748befc2f08269cd95, type: 3}
       onLineFinished:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 8903271201154221246}
-            m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-            m_MethodName: SetIndex
-            m_Mode: 3
+          - m_Target: {fileID: 3604387881821385518}
+            m_TargetAssemblyTypeName: WinERR, Assembly-CSharp
+            m_MethodName: crash
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 1
+              m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+    - characterName: Win_ERR
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: -873354393, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: "[Exception found: \u201Chype.exe\u201D crashed during runtime]"
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Win_ERR
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: -873354393, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: '[A problem has been detected and WinnerOS has been shut down to prevent
+        damage to your computer]'
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Win_ERR
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: -873354393, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: '[If this is the first time you''ve seen this stop error screen, restart
+        your computer. if this screen appears again, follow these steps:]'
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Win_ERR
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: -873354393, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: '[Check to make sure any new hardware or software is properly installed.
+        I this is a new installation, ask your hardware or software manufacturer
+        for and WinnerOS updates you might need]'
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Win_ERR
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: -873354393, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: '[If problems continue, disable or remove any newly installed hardware
+        or software. Disable BIOS memory options such as caching or shadowing. If
+        you need to use Safe Mode to remove or disable components, restart your computer,
+        press F8 to select Advanced Startup Options, and then select Safe Mode]'
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Win_ERR
+      characterRenderer: {fileID: 1973625132079535063}
+      characterSprite: {fileID: -873354393, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
+      text: '[Technical information:]
+
+
+
+        [*** STOP: 0x000000FE (0x00000008,
+        0x000000006, 0x00000009, 0x847075cc)]
+
+'
+      voiceLine: {fileID: 0}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
     hasChoice: 0
     choice:
       optionA:
-        label: Play
+        label: 
         onChosen:
           m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-              m_MethodName: EndDialogue
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
-        nextIndex: 1
+            m_Calls: []
+        nextIndex: 0
       optionB:
         label: 
         onChosen:
           m_PersistentCalls:
             m_Calls: []
-        nextIndex: 2
+        nextIndex: 0
     continueToNextBlock: 0
-    nextBlockIndex: 1
+    nextBlockIndex: 0
   currentIndex: 0
 --- !u!114 &3067146188342534323
 MonoBehaviour:
@@ -351,8 +338,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.66, y: 11.28, z: 6.26}
-  m_Center: {x: 0, y: 10.41, z: 0}
+  m_Size: {x: 4.6, y: 12, z: 7.3}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &3604387881821385518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572397972388486120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a444aaf606accdb44b3323c52925306d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  renderer: {fileID: 1973625132079535063}
+  sprite: {fileID: -873354393, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
 --- !u!1 &7880313861595403924
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +380,7 @@ Transform:
   m_GameObject: {fileID: 7880313861595403924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 7.17765, y: 7.17765, z: 7.17765}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,7 +435,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 120814259, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+  m_Sprite: {fileID: -922375759, guid: ea4eb3d0bd625994699ac7fb8eed3424, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
