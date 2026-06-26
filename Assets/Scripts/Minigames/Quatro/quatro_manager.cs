@@ -213,7 +213,7 @@ public class quatro_manager : MonoBehaviour
 
         if (has_player_won) {
             Debug.Log("Player wins");
-            GameManager.Instance.current_money += global_bet;
+            GameManager.Instance.AddMoney(global_bet);
         }
         else {
             Debug.Log("player loses");

@@ -9,9 +9,12 @@ public class SpinningWheel : MonoBehaviour
     public RectTransform wheelTransform;
 
     [Header("Settings")]
-    [Range(0f, 1f)] 
+    [Range(0f, 1f)]
     public float option2Chance = 0.1f;
     public float spinDuration = 3f;
+    public int fullLoops = 5;
+
+    public int moolah;
 
     private bool isSpinning = false;
 
@@ -21,6 +24,10 @@ public class SpinningWheel : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+
+    public void Start(){
+        option2Image.fillAmount = option2Chance;
     }
 
     public void UpdateWheelVisuals()
@@ -33,58 +40,67 @@ public class SpinningWheel : MonoBehaviour
 
     public void StartSpin()
     {
+        if(GameManager.Instance.current_money <= moolah) return;
+        GameManager.Instance.current_money -= moolah;
+        if (BuffManager.Instance != null)
+            option2Chance = Mathf.Clamp01(option2Chance + BuffManager.Instance.GetWheelLuckBonus());
+
         UpdateWheelVisuals();
 
         if (!isSpinning)
-        {
             StartCoroutine(SpinRoutine());
-        }
     }
 
     private IEnumerator SpinRoutine()
     {
-        
         isSpinning = true;
-        
-        float elapsed = 0f;
-        float randomFinalAngle = Random.Range(0f, 360f);
-        float totalRotation = (360f * 5) + randomFinalAngle; // 5 full loops + extra
 
+        bool playerWins = Random.value < option2Chance;
+
+        float landingAngle;
+        if (playerWins)
+        {
+            float chunkSize = option2Chance * 360f;
+            float margin = chunkSize * 0.05f;
+            landingAngle = Random.Range(margin, chunkSize - margin);
+        }
+        else
+        {
+            float chunkSize = option2Chance * 360f;
+            float margin = chunkSize * 0.05f + 2f;
+            landingAngle = Random.Range(chunkSize + margin, 360f - margin);
+        }
+
+        float totalRotation = fullLoops * 360f + landingAngle;
+
+        float elapsed = 0f;
         while (elapsed < spinDuration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / spinDuration;
-            t = t * t * (3f - 2f * t); 
+            t = t * t * (3f - 2f * t);
 
             float currentAngle = Mathf.Lerp(0f, totalRotation, t);
             wheelTransform.localEulerAngles = new Vector3(0, 0, currentAngle);
-            
+
             yield return null;
         }
 
+        wheelTransform.localEulerAngles = new Vector3(0, 0, landingAngle);
+
         isSpinning = false;
-        DetermineWinner();
+        DetermineWinner(playerWins);
     }
 
-    private void DetermineWinner()
-{
-    float rawAngle = wheelTransform.localEulerAngles.z % 360f;
-    if (rawAngle < 0) rawAngle += 360f;
-
-    //float finalAngle = (180f - rawAngle + 360f) % 360f;
-    
-    Debug.Log("Final calculated angle: " + rawAngle);
-
-    float option2AngleSize = option2Chance * 360f;
-    Debug.Log("Salvation target size: 0 to " + option2AngleSize);
-
-    if (rawAngle <= option2AngleSize)
+    private void DetermineWinner(bool playerWins)
     {
-        Debug.Log("Salvation !!!");
+        if (playerWins)
+        {
+            Debug.Log("Salvation!!!");
+        }
+        else
+        {
+            Debug.Log("No salvation :((");
+        }
     }
-    else
-    {
-        Debug.Log("No salvation :((");
-    }
-}
 }

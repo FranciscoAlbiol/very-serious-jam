@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 08652fc430580ab4fb596b97c97f5024
+guid: 9c594a61028f04d44b6516f9654d2a84
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,12 +95,78 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: dasfsadgsg_0
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 704
+        width: 657
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3458c26cf6438854dbb622b3b792a5b3
+      internalID: 2105212330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dasfsadgsg_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 1434
+        width: 601
+        height: 609
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302a43627bca2df4b9670e633c270f89
+      internalID: 140094092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dasfsadgsg_2
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 1369
+        width: 583
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b6fcf8949b2e2945bad6262877e4dfd
+      internalID: 1056020694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 07372e1edb0014744ba45504e48c5ca4
     internalID: 0
     vertices: []
     indices: 
@@ -109,7 +175,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dasfsadgsg_0: 2105212330
+      dasfsadgsg_1: 140094092
+      dasfsadgsg_2: 1056020694
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

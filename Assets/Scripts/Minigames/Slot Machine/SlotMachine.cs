@@ -109,7 +109,7 @@ public class SlotMachine : MonoBehaviour
         Symbol outcome = ResolveSymbols(left, middle, right);
         int delta      = CalculateDelta(outcome, CurrentBet);
 
-        GameManager.Instance.current_money += delta;
+        GameManager.Instance.AddMoney(delta);
         onMoneyChanged?.Invoke(GameManager.Instance.current_money);
 
         SpinResult result = new SpinResult
@@ -138,7 +138,7 @@ public class SlotMachine : MonoBehaviour
 
     private int CalculateDelta(Symbol s, int bet)
     {
-        return s switch
+        int raw = s switch
         {
             Symbol.Skull      => -bet,
             Symbol.BrokenCoin => -Mathf.RoundToInt(bet * 0.50f),
@@ -149,6 +149,7 @@ public class SlotMachine : MonoBehaviour
             Symbol.Seven      =>  bet * 2,
             _                 =>  0
         };
+        return BuffManager.Instance != null ? BuffManager.Instance.ApplyCashout(raw) : raw;
     }
 
     private string BuildMessage(Symbol s, int delta, int bet)
@@ -169,15 +170,22 @@ public class SlotMachine : MonoBehaviour
 
     private Symbol PickSymbol()
     {
+        int luckBonus = BuffManager.Instance != null ? BuffManager.Instance.GetLuckBonusWeight() : 0;
+
         int total = 0;
-        foreach (int w in symbolWeights) total += w;
+        for (int i = 0; i < symbolWeights.Length; i++)
+        {
+            int w = symbolWeights[i] + (i >= 3 ? luckBonus : 0);
+            total += w;
+        }
 
         int roll = Random.Range(0, total);
         int cumulative = 0;
 
         for (int i = 0; i < symbolWeights.Length; i++)
         {
-            cumulative += symbolWeights[i];
+            int w = symbolWeights[i] + (i >= 3 ? luckBonus : 0);
+            cumulative += w;
             if (roll < cumulative)
                 return (Symbol)i;
         }
