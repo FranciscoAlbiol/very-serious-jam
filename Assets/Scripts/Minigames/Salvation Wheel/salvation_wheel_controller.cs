@@ -8,6 +8,12 @@ public class SpinningWheel : MonoBehaviour
     public Image option2Image;
     public RectTransform wheelTransform;
 
+    [Header("Audio Clip")]
+    public AudioSource wheelAudioSource;
+    public AudioClip roll_soundClip;
+    public AudioClip win_soundClip;
+    public AudioClip lose_soundClip;
+
     [Header("Settings")]
     [Range(0f, 1f)]
     public float option2Chance = 0.1f;
@@ -28,6 +34,10 @@ public class SpinningWheel : MonoBehaviour
 
     public void Start(){
         option2Image.fillAmount = option2Chance;
+
+        if (wheelAudioSource == null) {
+            wheelAudioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public void UpdateWheelVisuals()
