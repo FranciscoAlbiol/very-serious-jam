@@ -16,8 +16,16 @@ public class Movement : MonoBehaviour
     private Vector2 lookInput;
     private bool inputEnabled = true;
 
+    [Header("Audio Clip")]
+    public AudioSource walkingAudioSource;
+    public AudioClip walk_soundClip;
+
     void Start()
     {
+        if (walkingAudioSource == null) {
+            walkingAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         yaw = transform.eulerAngles.y;
@@ -79,5 +87,22 @@ public class Movement : MonoBehaviour
         move.y = yVelocity;
 
         controller.Move(move * moveSpeed * Time.deltaTime);
+
+        if (controller.isGrounded && moveInput.sqrMagnitude > 0.01f)
+        {
+            if (!walkingAudioSource.isPlaying)
+            {
+                walkingAudioSource.clip = walk_soundClip;
+                walkingAudioSource.loop = true;
+                walkingAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (walkingAudioSource.isPlaying)
+            {
+                walkingAudioSource.Stop();
+            }
+        }
     }
 }

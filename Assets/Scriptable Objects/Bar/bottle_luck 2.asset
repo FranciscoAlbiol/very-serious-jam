@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17fa19b4c6488347bee94f9e64d47d3, type: 3}
   m_Name: bottle_luck 2
   m_EditorClassIdentifier: Assembly-CSharp::bottle_SO
-  name: blue
+  name: Reality Vodka
   description: Makes you feel a luckier.
   price: 200
   buff: 1
-  buff_mult: 3
+  buff_tier: 2
   is_bought: 0

@@ -1,10 +1,10 @@
 using UnityEngine;
 
+public enum BuffTier { None, Tier1, Tier2, Tier3 }
+
 public class BuffManager : MonoBehaviour
 {
     public static BuffManager Instance;
-
-    public enum BuffTier { None, Tier1, Tier2, Tier3 }
 
     public BuffTier luckTier = BuffTier.None;
     public BuffTier cashoutTier = BuffTier.None;

@@ -17,7 +17,6 @@ public class bar_controller : MonoBehaviour
     public static bar_controller Instance { get; private set; }
     
 
-
     public bool player_in_bar = false;
 
     private void Awake()
@@ -34,10 +33,14 @@ public class bar_controller : MonoBehaviour
             exit_bar();
         }
 
+        if (player_in_bar && Mouse.current != null)
+        {
+            hover_drink();
+        }
         if (player_in_bar && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-          select_drink();
-        }
+                select_drink();
+        } 
     }
 
     public void start_bar() {
@@ -46,21 +49,30 @@ public class bar_controller : MonoBehaviour
 
     void exit_bar() {
         player_in_bar = false;
+        bar_dialogue_object.SetActive(false);
     }
 
-    void select_drink() {
+    void hover_drink() {
         Ray ray = bar_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
         {
-            bottle_script clickedbottle = hit.collider.GetComponent<bottle_script>();
+            bottle_script hoveredbottle = hit.collider.GetComponent<bottle_script>();
 
-            Debug.Log(clickedbottle);
-            if (clickedbottle != null)
+            if (hoveredbottle != null)
             {
-                display_drink_info(clickedbottle.bottle_data);
+                display_drink_info(hoveredbottle.bottle_data);
             }
+            
+            else
+            {
+                bar_dialogue_object.SetActive(false);
+            }
+        }
+        else
+        {
+            bar_dialogue_object.SetActive(false);
         }
     }
 
@@ -72,4 +84,34 @@ public class bar_controller : MonoBehaviour
 
         priceText.text = data.price.ToString();
     }
+
+    void select_drink() {
+
+        Ray ray = bar_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+
+        {
+            bottle_script clickedbottle = hit.collider.GetComponent<bottle_script>();
+            Debug.Log(clickedbottle);
+
+            if (clickedbottle != null)
+            {
+                if(clickedbottle.bottle_data.buff == Buff.luck) {
+                    BuffManager.Instance.luckTier = clickedbottle.bottle_data.buff_tier;
+                    Debug.Log("changing luck buff tier");
+                }
+                else
+                    BuffManager.Instance.cashoutTier = clickedbottle.bottle_data.buff_tier;
+
+                clickedbottle.gameObject.SetActive(false);
+                GameManager.Instance.current_money -= clickedbottle.bottle_data.price;
+                
+                
+            }
+
+        }
+
+    } 
 }
