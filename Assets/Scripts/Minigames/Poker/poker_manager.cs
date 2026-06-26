@@ -68,13 +68,6 @@ public class poker_manager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    void Start()
-    {
-        if (wheelAudioSource == null) {
-            wheelAudioSource = gameObject.AddComponent<AudioSource>();
-        }
-    }
-
 
     public void start_poker()
     {

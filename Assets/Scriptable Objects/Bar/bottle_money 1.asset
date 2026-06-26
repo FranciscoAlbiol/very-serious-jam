@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17fa19b4c6488347bee94f9e64d47d3, type: 3}
   m_Name: bottle_money 1
   m_EditorClassIdentifier: Assembly-CSharp::bottle_SO
-  name: poop 2
+  name: The Cashpuker
   description: Somehow, you feel like you can become a bit richer.
   price: 100
   buff: 0
-  buff_mult: 2
+  buff_tier: 1
   is_bought: 0
