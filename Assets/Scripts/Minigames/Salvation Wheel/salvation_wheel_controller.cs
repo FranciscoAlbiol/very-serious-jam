@@ -13,6 +13,12 @@ public class SpinningWheel : MonoBehaviour
     public float option2Chance = 0.1f;
     public float spinDuration = 3f;
 
+    [Header("Audio Clip")]
+    public AudioSource wheelAudioSource;
+    public AudioClip win_soundClip;
+    public AudioClip roll_soundClip;
+    public AudioClip lose_soundClip;
+
     private bool isSpinning = false;
 
     public static SpinningWheel Instance { get; private set; }
@@ -21,6 +27,13 @@ public class SpinningWheel : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+
+    void Start()
+    {
+        if (wheelAudioSource == null) {
+            wheelAudioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public void UpdateWheelVisuals()
@@ -37,6 +50,8 @@ public class SpinningWheel : MonoBehaviour
 
         if (!isSpinning)
         {
+            wheelAudioSource.clip = roll_soundClip;
+            wheelAudioSource.Play();
             StartCoroutine(SpinRoutine());
         }
     }
@@ -63,6 +78,7 @@ public class SpinningWheel : MonoBehaviour
         }
 
         isSpinning = false;
+        wheelAudioSource.Stop();
         DetermineWinner();
     }
 
@@ -70,8 +86,6 @@ public class SpinningWheel : MonoBehaviour
 {
     float rawAngle = wheelTransform.localEulerAngles.z % 360f;
     if (rawAngle < 0) rawAngle += 360f;
-
-    //float finalAngle = (180f - rawAngle + 360f) % 360f;
     
     Debug.Log("Final calculated angle: " + rawAngle);
 
@@ -81,10 +95,14 @@ public class SpinningWheel : MonoBehaviour
     if (rawAngle <= option2AngleSize)
     {
         Debug.Log("Salvation !!!");
+        wheelAudioSource.clip = win_soundClip;
+        wheelAudioSource.Play();
     }
     else
     {
         Debug.Log("No salvation :((");
+        wheelAudioSource.clip = lose_soundClip;
+        wheelAudioSource.Play();
     }
 }
 }
