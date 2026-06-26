@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 133225594}
   - component: {fileID: 133225593}
   m_Layer: 0
-  m_Name: Button (Legacy) (2)
+  m_Name: bet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -918,9 +918,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DiceGame, Assembly-CSharp
-        m_MethodName: LockBet
+      - m_Target: {fileID: 1418961344}
+        m_TargetAssemblyTypeName: poker_manager, Assembly-CSharp
+        m_MethodName: player_finish_raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15370,9 +15370,8 @@ GameObject:
   - component: {fileID: 1319521318}
   - component: {fileID: 1319521317}
   - component: {fileID: 1319521316}
-  - component: {fileID: 1319521315}
   m_Layer: 0
-  m_Name: Button (Legacy)
+  m_Name: addBet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15397,18 +15396,6 @@ RectTransform:
   m_AnchoredPosition: {x: 377, y: -212}
   m_SizeDelta: {x: 131.68814, y: 123.666664}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1319521315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319521313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61124775a8b2c2a4a92b33fc89aa620a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1319521316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15453,14 +15440,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DiceGame, Assembly-CSharp
-        m_MethodName: IncreaseBet
-        m_Mode: 1
+      - m_Target: {fileID: 1418961344}
+        m_TargetAssemblyTypeName: poker_manager, Assembly-CSharp
+        m_MethodName: change_bet
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16101,6 +16088,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 1.035
       objectReference: {fileID: 0}
+    - target: {fileID: 4652646348077117885, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652646348077117885, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: player_raise
+      objectReference: {fileID: 0}
     - target: {fileID: 5527484321002044483, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -16177,11 +16172,16 @@ PrefabInstance:
       propertyPath: p_interaction
       value: 
       objectReference: {fileID: 1027427277}
+    - target: {fileID: 8916724138920014970, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
+      propertyPath: raise_bet_HUD
+      value: 
+      objectReference: {fileID: 81236819}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7620462493171409194, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5602722659297367721, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 81236820}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3746164492421664168, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
@@ -16214,6 +16214,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.054365255, y: 0.056442145, z: 0.035260987}
   m_Center: {x: -0.0016462763, y: -0.004980798, z: 0.0026257588}
+--- !u!114 &1418961344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8916724138920014970, guid: ead1413c6c5c3ea4c95e9ac66ed4ba32, type: 3}
+  m_PrefabInstance: {fileID: 1418961341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418961342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9ffe967acc8764086e85e552434c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::poker_manager
 --- !u!1 &1422972032
 GameObject:
   m_ObjectHideFlags: 0
@@ -17943,7 +17954,7 @@ GameObject:
   - component: {fileID: 1594409086}
   - component: {fileID: 1594409085}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: betText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21807,7 +21818,7 @@ GameObject:
   - component: {fileID: 2091181064}
   - component: {fileID: 2091181063}
   m_Layer: 0
-  m_Name: Button (Legacy) (3)
+  m_Name: leave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21876,21 +21887,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DiceGame, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerInteraction, Assembly-CSharp
-        m_MethodName: EndInteraction
+      - m_Target: {fileID: 1418961344}
+        m_TargetAssemblyTypeName: poker_manager, Assembly-CSharp
+        m_MethodName: player_leave_raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
