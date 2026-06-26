@@ -281,7 +281,7 @@ public class quatro_manager : MonoBehaviour
     {
         Debug.Log("finishing turn !!");
         Debug.Log(turn_index);
-        if (turn_index == 1 && waiting_player)
+        if (waiting_player)
         {
             waiting_player = false;
             action_buttons.SetActive(false);
@@ -444,6 +444,7 @@ public class quatro_manager : MonoBehaviour
 
     void play_card(quatro_card_SO card) {
         last_card_played = card;
+        int original_turn_index = turn_index;
 
         if (card.number > 9) {
             if (card.number == 10) {
@@ -483,8 +484,9 @@ public class quatro_manager : MonoBehaviour
 
         card_view cardScript = t_hand.GetComponent<card_view>();
         cardScript.Initialize(card);
-        if(turn_index == 1) 
-                    end_player_turn();
+
+        if(original_turn_index == 1) 
+            end_player_turn();
     }
 
     public void give_card(List<quatro_card_SO> hand) {
