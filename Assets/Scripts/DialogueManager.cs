@@ -20,7 +20,6 @@ public class DialogueManager : MonoBehaviour
 
     public float letterDelay = 0.05f;
 
-
     private AudioSource audioSource;
 
     private DialogueBlock[] allBlocks;
@@ -36,6 +35,9 @@ public class DialogueManager : MonoBehaviour
     private int visibleCount = 0;
     private float timer = 0f;
 
+    private SpriteRenderer activeRenderer;
+    private Sprite defaultSprite;
+    private Sprite typingSprite;
 
     void Awake()
     {
@@ -66,8 +68,7 @@ public class DialogueManager : MonoBehaviour
         if (visibleCount >= targetText.Length)
         {
             isTyping = false;
-            audioSource.loop = false;
-            audioSource.Stop();
+            StopTypingEffects();
             StartCoroutine(ReadyNextFrame());
         }
     }
@@ -100,7 +101,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueActive = false;
         isTyping = false;
-        audioSource.Stop();
+        StopTypingEffects();
         dialogueBox.SetActive(false);
         choiceBox.SetActive(false);
         nextButton.gameObject.SetActive(false);
@@ -109,7 +110,6 @@ public class DialogueManager : MonoBehaviour
         if (interaction != null)
             interaction.EndInteraction();
     }
-
 
     void LoadBlock(DialogueBlock block)
     {
@@ -138,12 +138,24 @@ public class DialogueManager : MonoBehaviour
             nameText.text = hasName ? line.characterName : "";
         }
 
-        if (line.characterRenderer != null && line.characterSprite != null)
-            line.characterRenderer.sprite = line.characterSprite;
+        if (line.characterRenderer != null)
+        {
+            activeRenderer = line.characterRenderer;
+            defaultSprite = activeRenderer.sprite;
+            typingSprite = line.characterSprite;
+
+            if (typingSprite != null)
+                activeRenderer.sprite = typingSprite;
+        }
+        else
+        {
+            activeRenderer = null;
+            defaultSprite = null;
+            typingSprite = null;
+        }
 
         if (line.voiceLine != null)
         {
-            audioSource.Stop();
             audioSource.clip = line.voiceLine;
             audioSource.loop = true;
             audioSource.Play();
@@ -156,6 +168,18 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
     }
 
+    void StopTypingEffects()
+    {
+        audioSource.loop = false;
+        audioSource.Stop();
+
+        if (activeRenderer != null && defaultSprite != null)
+            activeRenderer.sprite = defaultSprite;
+        activeRenderer = null;
+        defaultSprite = null;
+        typingSprite = null;
+    }
+
     IEnumerator ReadyNextFrame()
     {
         yield return null;
@@ -163,7 +187,7 @@ public class DialogueManager : MonoBehaviour
         nextButton.gameObject.SetActive(true);
     }
 
-    void OnNextPressed()
+    public void OnNextPressed()
     {
         if (!dialogueActive || !buttonReady) return;
 
@@ -172,8 +196,7 @@ public class DialogueManager : MonoBehaviour
             isTyping = false;
             visibleCount = targetText.Length;
             dialogueText.text = targetText;
-            audioSource.loop = false;
-            audioSource.Stop();
+            StopTypingEffects();
             buttonReady = false;
             StartCoroutine(ReadyNextFrame());
             return;

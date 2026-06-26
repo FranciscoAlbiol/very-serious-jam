@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1793262575301213128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 8.13, z: 0}
-  m_LocalScale: {x: 7.17765, y: 7.17765, z: 2.39255}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 100366781277362525}
@@ -120,7 +120,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.06, y: -3.07, z: 30.54}
-  m_LocalScale: {x: 0.79671, y: 0.79671, z: 0.79671}
+  m_LocalScale: {x: 2.524237, y: 2.524237, z: 2.524237}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 274025543277049893}
@@ -145,9 +145,16 @@ MonoBehaviour:
     - characterName: Uno
       characterRenderer: {fileID: 1266239015801611948}
       characterSprite: {fileID: -612593237, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
-      text: "My siblings and I are playing Quatro. It\u2019s a legally distinct version
-        of a real game that shares a name with me, but that we cannot name directly
-        for copyright reasons.\r\n"
+      text: "My siblings and I are playing Quatro. \r\n"
+      voiceLine: {fileID: 8300000, guid: 70b43ff2426f33242ace6d33c624eeed, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Uno
+      characterRenderer: {fileID: 1266239015801611948}
+      characterSprite: {fileID: -612593237, guid: dc8155a5fd4a80d4b910fec0aa1be9a1, type: 3}
+      text: "It\u2019s a legally distinct version of a real game that shares a name
+        with me, but that we cannot name directly for copyright reasons."
       voiceLine: {fileID: 8300000, guid: 70b43ff2426f33242ace6d33c624eeed, type: 3}
       onLineFinished:
         m_PersistentCalls:
@@ -212,8 +219,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.12, y: 7.5, z: 8.66}
-  m_Center: {x: 0, y: 8.5, z: 0}
+  m_Size: {x: 0.37, y: 0.92, z: 0.98}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9150293993676978242
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3331396410339016975
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 9150293993676978242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -13.73, y: 10.74, z: 0}
+  m_LocalPosition: {x: -1.57, y: 0.224, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

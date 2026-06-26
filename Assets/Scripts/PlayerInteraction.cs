@@ -15,19 +15,30 @@ public class PlayerInteraction : MonoBehaviour
     private bool isInteracting = false;
     private bool isTransitioning = false;
 
+    private bool inputCooldown = false;
+
     public RawImage fadeImage;
     public GameObject interactNotif;
+    public GameObject talkNotif;
 
     void Update()
     {
         if (isTransitioning) return;
+
+        if (inputCooldown)
+        {
+            inputCooldown = false;
+            return;
+        }
 
         if (isInteracting)
         {
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 if (currentActive.trigger == null || currentActive.trigger.HasSeenIndex(currentActive.trigger.GetIndex()))
+                {
                     DialogueManager.instance.EndDialogue();
+                }
             }
             return;
         }
@@ -40,45 +51,68 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hovered != currentHovered)
         {
-            if (currentHovered != null) currentHovered.SetHighlight(false);
-            interactNotif.SetActive(false);
+            if (currentHovered != null)
+            {
+                currentHovered.SetHighlight(false);
+                interactNotif.SetActive(false);
+                talkNotif.SetActive(false);
+            }
             currentHovered = hovered;
-            if (currentHovered != null) currentHovered.SetHighlight(true);
-            interactNotif.SetActive(true);
+            if (currentHovered != null)
+            {
+                currentHovered.SetHighlight(true);
+                bool isGame = !string.IsNullOrEmpty(currentHovered.minigame_to_start);
+                interactNotif.SetActive(isGame);
+                talkNotif.SetActive(!isGame);
+            }
         }
 
-        if(!didHit){
-            interactNotif.SetActive(false);
-        }
-
-        if (currentHovered != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (!didHit)
         {
-            if (currentHovered.interactableCamera == null) return;
-            currentActive = currentHovered;
-            currentActive.SetHighlight(false);
-            currentHovered = null;
+            interactNotif.SetActive(false);
+            talkNotif.SetActive(false);
+        }
 
-            if (currentActive.trigger != null)
+        if (currentHovered != null)
+        {
+            bool isGame  = !string.IsNullOrEmpty(currentHovered.minigame_to_start);
+            bool pressed = isGame
+                ? Keyboard.current.eKey.wasPressedThisFrame
+                : Keyboard.current.spaceKey.wasPressedThisFrame;
+
+            if (pressed)
             {
-                StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
-                isInteracting = true;
-                player.SetInputEnabled(false);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else if (currentActive.minigame_to_start != null) {
-                StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
-                GameManager.Instance.start_minigame(currentActive.minigame_to_start);
-            }
-            else
-            {
-                StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
+                if (currentHovered.interactableCamera == null) return;
+                currentActive = currentHovered;
+                currentActive.SetHighlight(false);
+                interactNotif.SetActive(false);
+                talkNotif.SetActive(false);
+                currentHovered = null;
+
+                if (currentActive.trigger != null)
+                {
+                    StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
+                    isInteracting = true;
+                    player.SetInputEnabled(false);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
+                else if (!string.IsNullOrEmpty(currentActive.minigame_to_start))
+                {
+                    StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
+                    GameManager.Instance.start_minigame(currentActive.minigame_to_start);
+                }
+                else
+                {
+                    StartCoroutine(TransitionCamera(playerCamera, currentActive.interactableCamera, true));
+                }
             }
         }
     }
 
     public void EndInteraction()
     {
+        if (currentActive == null) return;
         isInteracting = false;
         StartCoroutine(TransitionCamera(currentActive.interactableCamera, playerCamera, false));
         currentActive = null;
@@ -91,6 +125,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         isTransitioning = true;
         interactNotif.SetActive(false);
+        talkNotif.SetActive(false);
         float half = transitionDuration / 2f;
 
         for (float t = 0; t < half; t += Time.deltaTime)
@@ -106,12 +141,12 @@ public class PlayerInteraction : MonoBehaviour
         if (enteringInteraction)
         {
             isInteracting = true;
+            inputCooldown = true;
             player.SetInputEnabled(false);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            if (currentActive.trigger != null){
+            if (currentActive != null && currentActive.trigger != null)
                 currentActive.trigger.StartDialogue();
-            }
         }
         else
         {

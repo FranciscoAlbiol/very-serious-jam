@@ -36,6 +36,7 @@ public class DiceGame : MonoBehaviour
     public TextMeshProUGUI houseTotalText;
     public TextMeshProUGUI playerTotalText;
     public GameObject throwButton;
+    public GameObject leaveButton;
 
     public UnityEvent<int> onMoneyChanged;
 
@@ -121,6 +122,8 @@ public class DiceGame : MonoBehaviour
             houseDie1LandPoint.position, houseDie2LandPoint.position,
             hDie1, hDie2));
 
+        
+        houseTotalText.gameObject.SetActive(true);
         houseTotalText.text = houseTotal.ToString();;
 
         CurrentPhase = Phase.PlayerRolling;
@@ -141,13 +144,15 @@ public class DiceGame : MonoBehaviour
 
         int pDie1 = Random.Range(1, 7);
         int pDie2 = Random.Range(1, 7);
-        playerTotal = pDie1 + pDie2;
+        int luckBonus = BuffManager.Instance != null ? BuffManager.Instance.GetDiceLuckBonus() : 0;
+        playerTotal = pDie1 + pDie2 + luckBonus;
 
         yield return StartCoroutine(DropAndRoll(
             playerDie1, playerDie2,
             playerDie1LandPoint.position, playerDie2LandPoint.position,
             pDie1, pDie2));
 
+        playerTotalText.gameObject.SetActive(true);
         playerTotalText.text = playerTotal.ToString();;
 
         yield return new WaitForSeconds(0.6f);
@@ -158,10 +163,12 @@ public class DiceGame : MonoBehaviour
     {
         bool playerWins = playerTotal > houseTotal;
         bool tie        = playerTotal == houseTotal;
-        int  delta      = playerWins ? currentBet : (tie ? 0 : -currentBet);
+        int  rawDelta   = playerWins ? currentBet : (tie ? 0 : -currentBet);
+        int  delta      = BuffManager.Instance != null ? BuffManager.Instance.ApplyCashout(rawDelta) : rawDelta;
 
-        GameManager.Instance.current_money += delta;
+        GameManager.Instance.AddMoney(delta);
         onMoneyChanged?.Invoke(GameManager.Instance.current_money);
+        leaveButton.SetActive(true);
 
         if (playerWins) Debug.Log($"You won! +${currentBet}");
         else if (tie)   Debug.Log("Tie!");
@@ -244,14 +251,15 @@ public class DiceGame : MonoBehaviour
 
     private void HideAll()
     {
-        if (betScreen    != null) betScreen   .SetActive(false);
-        if (throwButton  != null) throwButton .SetActive(false);
+        if (betScreen    != null) betScreen.SetActive(false);
+        if (throwButton  != null) throwButton.SetActive(false);
+        if (leaveButton != null) leaveButton.SetActive(false);
     }
 
     private void HideDice()
     {
-        if (houseDie1  != null) houseDie1 .gameObject.SetActive(false);
-        if (houseDie2  != null) houseDie2 .gameObject.SetActive(false);
+        if (houseDie1  != null) houseDie1.gameObject.SetActive(false);
+        if (houseDie2  != null) houseDie2.gameObject.SetActive(false);
         if (playerDie1 != null) playerDie1.gameObject.SetActive(false);
         if (playerDie2 != null) playerDie2.gameObject.SetActive(false);
     }

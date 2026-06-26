@@ -16,7 +16,7 @@ public class title_controller : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                SceneManager.LoadScene("idkifthisissupposedtobesavedhereidk"); //main game
+                SceneManager.LoadScene("Main Scene"); //main game
             }
             return;
     }

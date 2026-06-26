@@ -128,7 +128,7 @@ public class poker_manager : MonoBehaviour
         
         if (NPC1_folded && NPC2_folded)  {
             Debug.Log("Player wins");
-            GameManager.Instance.current_money += global_bet;
+            GameManager.Instance.AddMoney(global_bet);
             player_fold();
         }
 
@@ -150,7 +150,7 @@ public class poker_manager : MonoBehaviour
 
         if (NPC1_folded && NPC2_folded)  {
             Debug.Log("Player wins");
-            GameManager.Instance.current_money += global_bet;
+            GameManager.Instance.AddMoney(global_bet);
             player_fold();
         }
 
@@ -172,7 +172,7 @@ public class poker_manager : MonoBehaviour
 
         if (NPC1_folded && NPC2_folded)  {
             Debug.Log("Player wins");
-            GameManager.Instance.current_money += global_bet;
+            GameManager.Instance.AddMoney(global_bet);
             player_fold();
         }
 
@@ -195,7 +195,7 @@ public class poker_manager : MonoBehaviour
         if (NPC1_folded && NPC2_folded)  {
             Debug.Log("Player wins");
             yield return new WaitForSeconds(1f);
-            GameManager.Instance.current_money += global_bet;
+            GameManager.Instance.AddMoney(global_bet);
             player_fold();
         }
 
@@ -205,7 +205,7 @@ public class poker_manager : MonoBehaviour
 
         if ((NPC1_folded || pointsPlayer >= pointsNPC1) && (NPC2_folded || pointsPlayer >= pointsNPC2)) {
             Debug.Log("player wins");
-            GameManager.Instance.current_money += global_bet;
+            GameManager.Instance.AddMoney(global_bet);
         }
 
         else {

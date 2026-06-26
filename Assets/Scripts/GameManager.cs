@@ -36,6 +36,13 @@ public class GameManager : MonoBehaviour
         moneytext.text = current_money.ToString();
     }
 
+    public void AddMoney(int amount)
+    {
+        if (amount <= 0) return;
+        int final = BuffManager.Instance != null ? BuffManager.Instance.ApplyCashout(amount) : amount;
+        current_money += final;
+    }
+
     public void start_minigame(string minigame) {
         switch(minigame) 
         {
