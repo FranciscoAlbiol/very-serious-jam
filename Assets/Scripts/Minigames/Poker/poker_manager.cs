@@ -516,6 +516,12 @@ public class poker_manager : MonoBehaviour
         bet_text.text = raise_bet.ToString();
     }
 
+    public void player_leave_raise() {
+        action_buttons.SetActive(true);
+        raise_bet_HUD.SetActive(false);
+        raise_bet = 0;
+    }
+
     public void player_finish_raise() {
         current_min_bet = player_bet + raise_bet;
         global_bet += raise_bet;
