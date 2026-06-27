@@ -166,7 +166,11 @@ public class DiceGame : MonoBehaviour
         int  rawDelta   = playerWins ? currentBet : (tie ? 0 : -currentBet);
         int  delta      = BuffManager.Instance != null ? BuffManager.Instance.ApplyCashout(rawDelta) : rawDelta;
 
-        GameManager.Instance.AddMoney(delta);
+        if (delta > 0)
+            GameManager.Instance.AddMoney(delta);
+        else 
+            GameManager.Instance.current_money += delta;
+
         onMoneyChanged?.Invoke(GameManager.Instance.current_money);
         leaveButton.SetActive(true);
 
