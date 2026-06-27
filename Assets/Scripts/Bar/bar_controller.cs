@@ -102,7 +102,6 @@ public class bar_controller : MonoBehaviour
             {
                 if(clickedbottle.bottle_data.buff == Buff.luck) {
                     BuffManager.Instance.luckTier = clickedbottle.bottle_data.buff_tier;
-                    Debug.Log("changing luck buff tier");
                 }
                 else
                     BuffManager.Instance.cashoutTier = clickedbottle.bottle_data.buff_tier;
