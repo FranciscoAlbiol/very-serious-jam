@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class DialogueTrigger : MonoBehaviour
 {
     public DialogueBlock[] blocks;
-
+    public bool isSpecial;
     public int currentIndex = 0;
     private HashSet<int> seenIndices = new HashSet<int>();
 

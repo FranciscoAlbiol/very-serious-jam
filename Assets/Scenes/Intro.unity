@@ -581,7 +581,11 @@ PrefabInstance:
     - target: {fileID: 2904338258801805023, guid: 604531e7ba8bf7d4d9f24973fb967ae3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -254691390, guid: 2e27d2f8ffb3689478464b9064fc91f9, type: 3}
+      objectReference: {fileID: 1068911657, guid: 64f63a0d494584f4eb98a6348a0e7ffd, type: 3}
+    - target: {fileID: 6327419847685502032, guid: 604531e7ba8bf7d4d9f24973fb967ae3, type: 3}
+      propertyPath: isSpecial
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6327419847685502032, guid: 604531e7ba8bf7d4d9f24973fb967ae3, type: 3}
       propertyPath: blocks.Array.size
       value: 3
@@ -715,7 +719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6327419847685502032, guid: 604531e7ba8bf7d4d9f24973fb967ae3, type: 3}
       propertyPath: blocks.Array.data[1].lines.Array.data[0].text
-      value: "Haha, you\u2019ve made the right choice tonight, gambler!"
+      value: "Perfect, you\u2019ve made the right choice tonight, gambler!"
       objectReference: {fileID: 0}
     - target: {fileID: 6327419847685502032, guid: 604531e7ba8bf7d4d9f24973fb967ae3, type: 3}
       propertyPath: blocks.Array.data[1].lines.Array.data[1].text

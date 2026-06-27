@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     private SpriteRenderer activeRenderer;
     private Sprite defaultSprite;
     private Sprite typingSprite;
+    private bool isSpecial = false;
 
     void Awake()
     {
@@ -77,6 +78,7 @@ public class DialogueManager : MonoBehaviour
     {
         allBlocks = blocks;
         activeTrigger = trigger;
+        isSpecial = trigger != null && trigger.isSpecial;
 
         DialogueBlock block = GetBlock(index);
         if (block == null)
@@ -105,6 +107,7 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(false);
         choiceBox.SetActive(false);
         nextButton.gameObject.SetActive(false);
+        audioSource.Stop();
 
         PlayerInteraction interaction = FindFirstObjectByType<PlayerInteraction>();
         if (interaction != null)
@@ -141,8 +144,8 @@ public class DialogueManager : MonoBehaviour
         if (line.characterRenderer != null)
         {
             activeRenderer = line.characterRenderer;
-            defaultSprite = activeRenderer.sprite;
-            typingSprite = line.characterSprite;
+            defaultSprite  = activeRenderer.sprite;
+            typingSprite   = line.characterSprite;
 
             if (typingSprite != null)
                 activeRenderer.sprite = typingSprite;
@@ -150,8 +153,8 @@ public class DialogueManager : MonoBehaviour
         else
         {
             activeRenderer = null;
-            defaultSprite = null;
-            typingSprite = null;
+            defaultSprite  = null;
+            typingSprite   = null;
         }
 
         if (line.voiceLine != null)
@@ -161,10 +164,10 @@ public class DialogueManager : MonoBehaviour
             audioSource.Play();
         }
 
-        targetText = line.text;
+        targetText   = line.text;
         visibleCount = 0;
-        timer = 0f;
-        isTyping = true;
+        timer        = 0f;
+        isTyping     = true;
         dialogueText.text = "";
     }
 
@@ -173,11 +176,12 @@ public class DialogueManager : MonoBehaviour
         audioSource.loop = false;
         audioSource.Stop();
 
-        if (activeRenderer != null && defaultSprite != null)
+        if (!isSpecial && activeRenderer != null && defaultSprite != null)
             activeRenderer.sprite = defaultSprite;
+
         activeRenderer = null;
-        defaultSprite = null;
-        typingSprite = null;
+        defaultSprite  = null;
+        typingSprite   = null;
     }
 
     IEnumerator ReadyNextFrame()
@@ -210,13 +214,9 @@ public class DialogueManager : MonoBehaviour
         lineIndex++;
 
         if (lineIndex < currentBlock.lines.Length)
-        {
             ShowLine(currentBlock.lines[lineIndex]);
-        }
         else
-        {
             OnBlockLinesFinished();
-        }
     }
 
     void OnBlockLinesFinished()
@@ -263,7 +263,6 @@ public class DialogueManager : MonoBehaviour
     void OnOptionChosen(DialogueChoiceOption option)
     {
         choiceBox.SetActive(false);
-
         option.onChosen?.Invoke();
 
         if (option.nextIndex < 0)
