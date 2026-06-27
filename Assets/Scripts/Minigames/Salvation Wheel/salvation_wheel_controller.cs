@@ -64,6 +64,8 @@ public class SpinningWheel : MonoBehaviour
     private IEnumerator SpinRoutine()
     {
         isSpinning = true;
+        wheelAudioSource.clip = roll_soundClip;
+        wheelAudioSource.Play();
 
         bool playerWins = Random.value < option2Chance;
 
@@ -104,12 +106,17 @@ public class SpinningWheel : MonoBehaviour
 
     private void DetermineWinner(bool playerWins)
     {
+        wheelAudioSource.Stop();
         if (playerWins)
         {
+            wheelAudioSource.clip = win_soundClip;
+            wheelAudioSource.Play();
             Debug.Log("Salvation!!!");
         }
         else
         {
+            wheelAudioSource.clip = lose_soundClip;
+            wheelAudioSource.Play();
             Debug.Log("No salvation :((");
         }
     }
