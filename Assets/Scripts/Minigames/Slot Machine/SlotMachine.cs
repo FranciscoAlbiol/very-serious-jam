@@ -109,7 +109,11 @@ public class SlotMachine : MonoBehaviour
         Symbol outcome = ResolveSymbols(left, middle, right);
         int delta      = CalculateDelta(outcome, CurrentBet);
 
-        GameManager.Instance.AddMoney(delta);
+        if (delta > 0)
+            GameManager.Instance.AddMoney(delta);
+        else 
+            GameManager.Instance.current_money += delta;
+            
         onMoneyChanged?.Invoke(GameManager.Instance.current_money);
 
         SpinResult result = new SpinResult
