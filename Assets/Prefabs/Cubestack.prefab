@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 2.2, z: 0}
-  m_LocalScale: {x: 7.17765, y: 7.17765, z: 7.17765}
+  m_LocalScale: {x: 5, y: 5, z: 7.17765}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9128833024250009687}
@@ -91,7 +91,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &2851865871453379517
+--- !u!1 &2438541628171096321
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,96 +99,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9128833024250009687}
-  - component: {fileID: 6992783270692167930}
-  - component: {fileID: 2856127292148146272}
-  - component: {fileID: 8260688032469828641}
-  m_Layer: 0
-  m_Name: Cubestack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9128833024250009687
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2851865871453379517}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73, y: 2.49, z: -15.77}
-  m_LocalScale: {x: 0.79671, y: 0.79671, z: 0.79671}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5362253314643806170}
-  - {fileID: 1634547964524617431}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6992783270692167930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2851865871453379517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0bd1c51ddf2d9847a19ca313f37c649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  blocks: []
-  currentIndex: 0
---- !u!114 &2856127292148146272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2851865871453379517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d1ed0eeaa7ef54e8633155b92d49ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  interactableCamera: {fileID: 1368502495410509236}
-  trigger: {fileID: 6992783270692167930}
-  minigame_to_start: 
---- !u!65 &8260688032469828641
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2851865871453379517}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.6, y: 12, z: 7.3}
-  m_Center: {x: 0, y: 2, z: 0}
---- !u!1 &6218814758357240214
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1634547964524617431}
-  - component: {fileID: 1368502495410509236}
-  - component: {fileID: 3983821463296357851}
-  - component: {fileID: 9076217598030567854}
+  - component: {fileID: 5753558771647663199}
+  - component: {fileID: 48674638846052446}
+  - component: {fileID: 8635117537625417143}
+  - component: {fileID: 2938914781624602003}
   m_Layer: 0
   m_Name: NPCcam
   m_TagString: Untagged
@@ -196,28 +110,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &1634547964524617431
+--- !u!4 &5753558771647663199
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218814758357240214}
+  m_GameObject: {fileID: 2438541628171096321}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -18.98, y: 8.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -8.392891, y: 2.233458, z: -0.035098888}
+  m_LocalScale: {x: 0.20155384, y: 1, z: 4.9615912}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9128833024250009687}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!20 &1368502495410509236
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &48674638846052446
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218814758357240214}
+  m_GameObject: {fileID: 2438541628171096321}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -262,13 +176,13 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &3983821463296357851
+--- !u!114 &8635117537625417143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218814758357240214}
+  m_GameObject: {fileID: 2438541628171096321}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
@@ -306,11 +220,209 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &9076217598030567854
+--- !u!81 &2938914781624602003
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6218814758357240214}
+  m_GameObject: {fileID: 2438541628171096321}
   m_Enabled: 1
+--- !u!1 &2851865871453379517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9128833024250009687}
+  - component: {fileID: 6992783270692167930}
+  - component: {fileID: 2856127292148146272}
+  - component: {fileID: 8260688032469828641}
+  m_Layer: 0
+  m_Name: Cubestack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9128833024250009687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851865871453379517}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.73, y: 2.49, z: -15.77}
+  m_LocalScale: {x: 0.79671, y: 0.79671, z: 0.79671}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5362253314643806170}
+  - {fileID: 5753558771647663199}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6992783270692167930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851865871453379517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0bd1c51ddf2d9847a19ca313f37c649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  blocks:
+  - index: 0
+    lines:
+    - characterName: Cubestack Top
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: -189615041, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "Oh!! Middle, look!! A new customer!~ \\ (\uFF20^\u2207^\uFF20) /"
+      voiceLine: {fileID: 8300000, guid: e38d0ea8893cbfe4cb970df5cb64d37a, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Middle
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: 827081882, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "Hey there, pard\u2019ner. Welcome ta\u2019 Cubestack\u2019s Wacky Drinks."
+      voiceLine: {fileID: 8300000, guid: b5eb60947e1007f4e8ed7f6645140363, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Middle
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: 827081882, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "Not to be confused with Face\u2019s bar, we run an\u2019 independent
+        business \u2018ere."
+      voiceLine: {fileID: 8300000, guid: b5eb60947e1007f4e8ed7f6645140363, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Middle
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: 827081882, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "Whaddo we sell, ya\u2019 ask? Well, it\u2019s simple. We sell magical
+        drinks that\u2019ll help ya\u2019 get luckier an\u2019 win bigger.. Just
+        don\u2019t tell Mistah Nobody about it."
+      voiceLine: {fileID: 8300000, guid: b5eb60947e1007f4e8ed7f6645140363, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Middle
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: 827081882, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "Anywho, I\u2019m Middle. Pleasure to meetcha."
+      voiceLine: {fileID: 8300000, guid: b5eb60947e1007f4e8ed7f6645140363, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Top
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: -189615041, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "And I\u2019m Top!!!~~ (=^\uFF65\u03C9\uFF65^=)\u4E3F"
+      voiceLine: {fileID: 8300000, guid: e38d0ea8893cbfe4cb970df5cb64d37a, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Bottom
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: -510332901, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: quack.
+      voiceLine: {fileID: 8300000, guid: 4ec7b7404edac184793dbd801b31d3df, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Middle
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: 827081882, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "And das\u2019 Bottom for ya."
+      voiceLine: {fileID: 8300000, guid: b5eb60947e1007f4e8ed7f6645140363, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Middle
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: 827081882, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "In the shelves ya\u2019 got a bunch o\u2019 colorful drinks. Just point
+        to the one ya\u2019 want an\u2019, if ya\u2019 got enough cash, I\u2019ll
+        fetch it for ya\u2019."
+      voiceLine: {fileID: 8300000, guid: b5eb60947e1007f4e8ed7f6645140363, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Top
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: 827081882, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: "Yes, gambler-san!! We will help you get very lucky and very strong,
+        nya!~\u2730  \u0B67( , \uFF3E \uFF3E , )\u0B68"
+      voiceLine: {fileID: 8300000, guid: e38d0ea8893cbfe4cb970df5cb64d37a, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    - characterName: Cubestack Bottom
+      characterRenderer: {fileID: 4065552838869054399}
+      characterSprite: {fileID: -510332901, guid: 08652fc430580ab4fb596b97c97f5024, type: 3}
+      text: quack.
+      voiceLine: {fileID: 8300000, guid: 4ec7b7404edac184793dbd801b31d3df, type: 3}
+      onLineFinished:
+        m_PersistentCalls:
+          m_Calls: []
+    hasChoice: 0
+    choice:
+      optionA:
+        label: 
+        onChosen:
+          m_PersistentCalls:
+            m_Calls: []
+        nextIndex: 0
+      optionB:
+        label: 
+        onChosen:
+          m_PersistentCalls:
+            m_Calls: []
+        nextIndex: 0
+    continueToNextBlock: 0
+    nextBlockIndex: 0
+  currentIndex: 0
+--- !u!114 &2856127292148146272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851865871453379517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d1ed0eeaa7ef54e8633155b92d49ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactableCamera: {fileID: 48674638846052446}
+  trigger: {fileID: 6992783270692167930}
+  minigame_to_start: 
+--- !u!65 &8260688032469828641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851865871453379517}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.28, y: 8.27, z: 4.1}
+  m_Center: {x: 0, y: 2, z: 0}
