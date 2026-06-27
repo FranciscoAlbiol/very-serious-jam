@@ -62,6 +62,9 @@ public class poker_manager : MonoBehaviour
 
     public static poker_manager Instance { get; private set; }
 
+    public AudioSource loseGame;
+    public AudioSource winGame;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -188,6 +191,7 @@ public class poker_manager : MonoBehaviour
         if (NPC1_folded && NPC2_folded)  {
             Debug.Log("Player wins");
             yield return new WaitForSeconds(1f);
+            winGame.Play();
             GameManager.Instance.AddMoney(global_bet);
             player_fold();
         }
@@ -198,10 +202,12 @@ public class poker_manager : MonoBehaviour
 
         if ((NPC1_folded || pointsPlayer >= pointsNPC1) && (NPC2_folded || pointsPlayer >= pointsNPC2)) {
             Debug.Log("player wins");
+            winGame.Play();
             GameManager.Instance.AddMoney(global_bet);
         }
 
         else {
+            loseGame.Play();
             Debug.Log("plyer loses");
         }
 

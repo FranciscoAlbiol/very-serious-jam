@@ -56,6 +56,9 @@ public class quatro_manager : MonoBehaviour
 
     public static quatro_manager Instance { get; private set; }
 
+    public AudioSource win;
+    public AudioSource lose;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -213,11 +216,12 @@ public class quatro_manager : MonoBehaviour
 
         if (has_player_won) {
             Debug.Log("Player wins");
+            win.Play();
             GameManager.Instance.AddMoney(global_bet);
         }
         else {
             Debug.Log("player loses");
-
+            lose.Play();
         }
 
         yield return new WaitForSeconds(1.0f);

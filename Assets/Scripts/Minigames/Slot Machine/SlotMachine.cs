@@ -51,10 +51,17 @@ public class SlotMachine : MonoBehaviour
     public bool IsSpinning;
     public int  CurrentBet  { get; private set; }
 
+    public AudioSource btn_click;
+    public AudioSource slot_machine;
+    public AudioSource slot_machine_win;
+    public AudioSource win;
+    public AudioSource lose;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
+
 
         CurrentBet = minBet;
         UpdateBetText();
@@ -77,7 +84,8 @@ public class SlotMachine : MonoBehaviour
         CurrentBet = Mathf.Clamp(CurrentBet, minBet, max);
 
         if (GameManager.Instance.current_money <= 0) return;
-
+        btn_click.Play(); 
+        slot_machine.Play();
         StartCoroutine(SpinRoutine());
     }
 
@@ -158,7 +166,19 @@ public class SlotMachine : MonoBehaviour
 
     private string BuildMessage(Symbol s, int delta, int bet)
     {
+        slot_machine.Stop();
         string sign = delta >= 0 ? "+" : "";
+        switch (s)
+        {
+            case Symbol.Skull: lose.Play(); break;
+            case Symbol.BrokenCoin: lose.Play(); break;
+            case Symbol.Crack: lose.Play(); break;
+            case Symbol.Clover: win.Play(); break;
+            case Symbol.Star: win.Play(); break;
+            case Symbol.Diamond: win.Play(); break;
+            case Symbol.Seven: slot_machine_win.Play(); break;
+            default: break;
+        }
         return s switch
         {
             Symbol.Skull      => $"LOSE 100%. ({sign}{delta})",

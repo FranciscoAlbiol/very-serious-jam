@@ -44,8 +44,13 @@ public class DiceGame : MonoBehaviour
     private int houseTotal;
     private int playerTotal;
 
+    private AudioSource roll_dice; 
+    public AudioSource lose;
+    public AudioSource win;
+
     void Awake()
     {
+        roll_dice = GetComponent<AudioSource>();
         if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
     }
@@ -107,6 +112,7 @@ public class DiceGame : MonoBehaviour
 
     private IEnumerator HouseRollPhase()
     {
+        roll_dice.Play();
         CurrentPhase = Phase.HouseRolling;
         HideAll();
         houseTotalText.text  = "";
@@ -128,6 +134,7 @@ public class DiceGame : MonoBehaviour
 
         CurrentPhase = Phase.PlayerRolling;
         throwButton.SetActive(true);
+
     }
 
     public void PlayerThrow()
@@ -138,6 +145,7 @@ public class DiceGame : MonoBehaviour
 
     private IEnumerator PlayerRollPhase()
     {
+        roll_dice.Play();
         CurrentPhase = Phase.Result;
         throwButton.SetActive(false);
         playerTotalText.text = "";
@@ -174,9 +182,12 @@ public class DiceGame : MonoBehaviour
         onMoneyChanged?.Invoke(GameManager.Instance.current_money);
         leaveButton.SetActive(true);
 
-        if (playerWins) Debug.Log($"You won! +${currentBet}");
+        if (playerWins){ 
+            win.Play();
+            Debug.Log($"You won! +${currentBet}");
+        }
         else if (tie)   Debug.Log("Tie!");
-        else            Debug.Log($"You lost! -${currentBet}");
+        else            {lose.Play(); Debug.Log($"You lost! -${currentBet}");}
     }
 
     public void PlayAgain() => EnterBetPhase();
